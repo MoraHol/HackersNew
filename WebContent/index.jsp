@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%session.setAttribute("sessionUser", null); %>
 <!DOCTYPE html>
 <html op="news">
 <head>
@@ -27,7 +28,7 @@
 											News</a></b> <a href="n	ewest">new</a> | <a href="front">past</a> | <a
 									href="newcomments">comments</a> | <a href="ask">ask</a> | <a
 									href="show">show</a> | <a href="jobs">jobs</a> | <a
-									href="submit">submit</a> </span></td>
+									href="Submit">submit</a> </span></td>
 							<td style="text-align: right; padding-right: 4px;"><span
 								class="pagetop"> <a href="login.jsp">login</a>
 							</span></td>

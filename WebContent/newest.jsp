@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ page import="models.Session" %>
-	<%Session sessionUser = (Session) request.getAttribute("session"); %>
+	<%Session sessionUser = (Session) request.getAttribute("session");
+	session.setAttribute("sessionUser",sessionUser);%>
 <!DOCTYPE html>
 <html op="newest">
 <head>
@@ -32,7 +33,7 @@
 							<td style="text-align: right; padding-right: 4px;"><span
 								class="pagetop"> <a id='me'
 									href="user?id=<%=sessionUser.getUser().getUserName()%>"> <%=sessionUser.getUser().getUserName()%>
-								</a> (1) | <a id='logout' href="/HackersNew">logout</a>
+								</a> (<%= sessionUser.getUser().getKarma() %>) | <a id='logout' href="/HackersNew">logout</a>
 							</span></td>
 						</tr>
 					</table></td>

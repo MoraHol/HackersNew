@@ -28,7 +28,7 @@
 			</tr>
 			<tr style="height: 10px"></tr>
 			<tr>
-				<td><form method="post" action="/r">
+				<td><form method="post" action="Submit">
 						<input type="hidden" name="fnid" value="<!--codigo para escribir noticia-->"><input
 							type="hidden" name="fnop" value="submit-page">
 						<script type="text/javascript">
@@ -47,7 +47,7 @@
 							</tr>
 							<tr>
 								<td>url</td>
-								<td><input type="text" name="url" value="" size="50"></td>
+								<td><input type="text" name="url" value="" size="50" name="url"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -55,7 +55,7 @@
 							</tr>
 							<tr>
 								<td>text</td>
-								<td><textarea name="text" rows="4" cols="49"></textarea></td>
+								<td><textarea name="text" rows="4" cols="49" name="text"></textarea></td>
 							</tr>
 							<tr>
 								<td></td>

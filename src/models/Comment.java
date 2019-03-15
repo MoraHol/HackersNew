@@ -13,6 +13,8 @@ public class Comment {
 		this.parentNotice = parentNotice;
 		this.parentComment = parentComment;
 		this.points = 0;
+		user.getComments().add(this);
+		parentNotice.getComments().add(this);
 	}
 
 	public User getUser() {

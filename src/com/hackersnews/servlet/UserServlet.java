@@ -1,20 +1,20 @@
 package com.hackersnews.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.NoticeController;
 import models.Session;
 
 /**
- * Servlet implementation class Submit
+ * Servlet implementation class UserServlet
  */
-@WebServlet("/Submit")
-public class Submit extends HttpServlet {
+@WebServlet("/user")
+public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -23,15 +23,18 @@ public class Submit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		if (sessionUser != null) {
-			if (sessionUser.isSession()) {
-				getServletContext().getRequestDispatcher("/submit.jsp").forward(request, response);
+		if (request.getParameter("id")
+				.equals(((Session) request.getSession().getAttribute("sessionUser")).getUser().getUserName())) {
+			try {
+				getServletContext().getRequestDispatcher("/user.jsp").forward(request, response);
+			} catch (Exception e) {
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
 			}
 		} else {
-			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+			response.getWriter().append("nmms no eres tu");
 		}
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -41,13 +44,7 @@ public class Submit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// doGet(request, response);
-		String url = request.getParameter("url");
-		String title = request.getParameter("title");
-		String text = request.getParameter("text");
-		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		NoticeController.createNotice(sessionUser.getUser(), title, url);
-		response.sendRedirect("newest");
+		doGet(request, response);
 	}
 
 }

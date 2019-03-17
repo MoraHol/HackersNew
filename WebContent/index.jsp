@@ -6,10 +6,8 @@
 <head>
 <meta name="referrer" content="origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css"
-	href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="rss">
 <title>Hacker News</title>
 </head>
 <body>
@@ -21,8 +19,9 @@
 						cellspacing="0" width="100%" style="padding: 2px">
 						<tr>
 							<td style="width: 18px; padding-right: 4px"><a
-								href="https://news.ycombinator.com"><img src="https://news.ycombinator.com/y18.gif"
-									width="18" height="18" style="border: 1px white solid;"></a></td>
+								href="https://news.ycombinator.com"><img
+									src="https://news.ycombinator.com/y18.gif" width="18"
+									height="18" style="border: 1px white solid;"></a></td>
 							<td style="line-height: 12pt; height: 10px;"><span
 								class="pagetop"><b class="hnname"><a href="news">Hacker
 											News</a></b> <a href="n	ewest">new</a> | <a href="front">past</a> | <a
@@ -792,19 +791,18 @@
 					</table></td>
 			</tr>
 			<tr>
-				<td><img src="https://news.ycombinator.com/s.gif" height="10" width="0">
-				<table width="100%" cellspacing="0" cellpadding="1">
+				<td><img src="https://news.ycombinator.com/s.gif" height="10"
+					width="0">
+					<table width="100%" cellspacing="0" cellpadding="1">
 						<tr>
 							<td bgcolor="#ff6600"></td>
 						</tr>
-					</table>
-					<br>
-				<center>
+					</table> <br>
+					<center>
 						<a href="https://www.ycombinator.com/apply/"> Applications are
 							open for YC Summer 2019 </a>
-					</center>
-					<br>
-				<center>
+					</center> <br>
+					<center>
 						<span class="yclinks"><a href="newsguidelines.html">Guidelines</a>
 							| <a href="newsfaq.html">FAQ</a> | <a
 							href="mailto:hn@ycombinator.com">Support</a> | <a
@@ -813,8 +811,7 @@
 							href="bookmarklet.html" rel="nofollow">Bookmarklet</a> | <a
 							href="http://www.ycombinator.com/legal/">Legal</a> | <a
 							href="http://www.ycombinator.com/apply/">Apply to YC</a> | <a
-							href="mailto:hn@ycombinator.com">Contact</a></span><br>
-						<br>
+							href="mailto:hn@ycombinator.com">Contact</a></span><br> <br>
 						<form method="get" action="//hn.algolia.com/">
 							Search: <input type="text" name="q" value="" size="17"
 								autocorrect="off" spellcheck="false" autocapitalize="off"

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class User {
 	private String userName;
@@ -8,6 +9,9 @@ public class User {
 	private ArrayList<Notice> notices;
 	private ArrayList<Comment> comments;
 	private int karma;
+	private String email;
+	private Date createdAt;
+	private String aboutme;
 
 	public User(String userName, String password) {
 		this.userName = userName;
@@ -15,6 +19,25 @@ public class User {
 		this.karma = 0;
 		this.notices = new ArrayList<Notice>();
 		this.comments = new ArrayList<Comment>();
+		this.email = "";
+		this.createdAt = new Date();
+		this.aboutme = "";
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public ArrayList<Notice> getNotices() {
@@ -71,5 +94,13 @@ public class User {
 
 	public void addKarma() {
 		this.karma++;
+	}
+
+	public String getAboutme() {
+		return aboutme;
+	}
+
+	public void setAboutme(String aboutme) {
+		this.aboutme = aboutme;
 	}
 }

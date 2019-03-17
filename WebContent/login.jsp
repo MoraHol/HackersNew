@@ -22,8 +22,9 @@
 				<td>password:</td>
 				<td><input type="password" name="pw" size="20"></td>
 			</tr>
-			<input type="text" value="false" style="display:none" name="register">
-		</table>	
+			<input type="text" value="false" style="display: none"
+				name="register">
+		</table>
 		<br> <input type="submit" value="login">
 	</form>
 	<a href="forgot">Forgot your password?</a>
@@ -43,7 +44,7 @@
 				<td>password:</td>
 				<td><input type="password" name="pw" size="20"></td>
 			</tr>
-			<input type="text" value="true" style="display:none" name="register">
+			<input type="text" value="true" style="display: none" name="register">
 		</table>
 		<br> <input type="submit" value="create account">
 	</form>

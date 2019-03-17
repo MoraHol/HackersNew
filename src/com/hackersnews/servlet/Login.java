@@ -27,6 +27,16 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		try {
 			String username = request.getParameter("acct");
@@ -37,8 +47,8 @@ public class Login extends HttpServlet {
 				Session session = new Session();
 				if(session.createAccount(username, password)) {
 					session.login(username, password);
-					request.setAttribute("session", session);
-					getServletContext().getRequestDispatcher("/newest.jsp").forward(request, response);
+					request.getSession().setAttribute("sessionUser", session);
+					getServletContext().getRequestDispatcher("/newest").forward(request, response);
 				}else {
 					getServletContext().getRequestDispatcher("/createAccount.jsp").forward(request, response);
 				}
@@ -48,8 +58,8 @@ public class Login extends HttpServlet {
 				User usernow = session.getUser();
 				System.out.println(usernow);
 				if (usernow != null) {
-					request.setAttribute("session", session);
-					getServletContext().getRequestDispatcher("/newest.jsp").forward(request, response);
+					request.getSession().setAttribute("sessionUser", session);
+					getServletContext().getRequestDispatcher("/newest").forward(request, response);
 				} else {
 					out.println("<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "    <meta charset=\"utf-8\">\r\n"
 							+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
@@ -63,16 +73,6 @@ public class Login extends HttpServlet {
 		} finally {
 			out.close();
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

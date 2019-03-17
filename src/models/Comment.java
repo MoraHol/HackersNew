@@ -1,36 +1,15 @@
 package models;
 
-public class Comment {
-	private User user;
-	private int points;
+public class Comment extends Item {
 	private String text;
 	private Notice parentNotice;
 	private Comment parentComment;
 	
 	public Comment(User user, String text, Notice parentNotice, Comment parentComment) {
-		this.user = user;
+		super(user);
 		this.text = text;
 		this.parentNotice = parentNotice;
 		this.parentComment = parentComment;
-		this.points = 0;
-		user.getComments().add(this);
-		parentNotice.getComments().add(this);
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public int getPoints() {
-		return points;
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
 	}
 
 	public String getText() {

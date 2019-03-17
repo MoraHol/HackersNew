@@ -5,8 +5,7 @@
 <head>
 <meta name="referrer" content="origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css"
-	href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="shortcut icon" href="favicon.ico">
 <title>Submit | Hacker News</title>
 </head>
@@ -29,7 +28,8 @@
 			<tr style="height: 10px"></tr>
 			<tr>
 				<td><form method="post" action="Submit">
-						<input type="hidden" name="fnid" value="<!--codigo para escribir noticia-->"><input
+						<input type="hidden" name="fnid"
+							value="<!--codigo para escribir noticia-->"><input
 							type="hidden" name="fnop" value="submit-page">
 						<script type="text/javascript">
 							function tlen(el) {
@@ -47,7 +47,8 @@
 							</tr>
 							<tr>
 								<td>url</td>
-								<td><input type="text" name="url" value="" size="50" name="url"></td>
+								<td><input type="text" name="url" value="" size="50"
+									name="url"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -70,9 +71,8 @@
 								<td></td>
 								<td>Leave url blank to submit a question for discussion. If
 									there is no url, the text (if any) will appear at the top of
-									the thread.<br>
-								<br> You can also submit via <a href="bookmarklet.html"
-									rel="nofollow"><u>bookmarklet</u></a>.
+									the thread.<br> <br> You can also submit via <a
+									href="bookmarklet.html" rel="nofollow"><u>bookmarklet</u></a>.
 								</td>
 							</tr>
 						</table>
@@ -80,5 +80,6 @@
 			</tr>
 		</table>
 	</center>
+	<script type="text/javascript" src="js/submit.js"></script>
 </body>
 </html>

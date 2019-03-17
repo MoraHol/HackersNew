@@ -1,25 +1,26 @@
 package models;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Notice {
+public class Notice extends Item{
 	private String url;
 	private String title;
 	private User user;
-	private int points;
 	private String type;
 	private ArrayList<Comment> comments;
 
-	public String getUrl() {
-		return url;
-	}
-
-	public Notice(User user, String title, String url) {
-		this.user = user;
+	public Notice(User user, String title, String url, int id) {
+		super(user);
 		this.title = title;
 		this.url = url;
-		this.points = 0;
-		comments = new ArrayList();
+		comments = new ArrayList<Comment>();
+	}
+
+	public String getUrl() {
+		return url;
 	}
 
 	public void setUrl(String url) {
@@ -42,14 +43,6 @@ public class Notice {
 		this.user = user;
 	}
 
-	public int getPoints() {
-		return points;
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -64,6 +57,17 @@ public class Notice {
 
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public String getDomainUrl() {
+		try {
+			URL url = new URL(this.url);
+			return url.getHost();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }

@@ -16,7 +16,7 @@ public class UserController {
 		return users;
 	}
 
-	public static User searchUser(String username, String password) {
+	public static User validateUser(String username, String password) {
 		for (User user : users) {
 			if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
 				return user;
@@ -25,12 +25,21 @@ public class UserController {
 		return null;
 	}
 
+	public static User searchUser(String username) {
+		for (User user : users) {
+			if (user.getUserName().equals(username)) {
+				return user;
+			}
+		}
+		return null;
+	}
+
 	public static User createAccount(String username, String password) {
 		try {
-			User user = searchUser(username, password);
-			if(user != null) {
+			User user = validateUser(username, password);
+			if (user != null) {
 				return null;
-			}else {
+			} else {
 				user = new User(username, password);
 				users.add(user);
 				return user;

@@ -2,6 +2,7 @@ package com.hackersnews.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controllers.UserController;
 import models.Notice;
 import models.Session;
+import models.User;
 
 /**
  * Servlet implementation class Submitted
@@ -27,13 +30,17 @@ public class Submitted extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
+		User user = UserController.searchUser(request.getParameter("id"));
 		PrintWriter out = response.getWriter();
+		// writing head
 		out.println("<!DOCTYPE html>\n" + "<html op=\"submitted\">\n" + "<head>\n"
 				+ "<meta name=\"referrer\" content=\"origin\">\n"
 				+ "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
 				+ "<link rel=\"stylesheet\" type=\"text/css\"\n" + "	href=\"css/index.css\">\n"
-				+ "<link rel=\"shortcut icon\" href=\"https://news.ycombinator.com/favicon.ico\">\n" + "<title>"
-				+ sessionUser.getUser().getUserName() + "&#x27;s submissions | Hacker News</title>\n" + "</head>");
+				+ "<link rel=\"shortcut icon\" href=\"favicon.ico\">\n" + "<title>" + user.getUserName()
+				+ "&#x27;s submissions | Hacker News</title>\n" + "</head>");
+		// writing menu
+
 		out.println("<body>\n" + "	<center>\n"
 				+ "		<table id=\"hnmain\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"\n"
 				+ "			width=\"85%\" bgcolor=\"#f6f6ef\">\n" + "			<tr>\n"
@@ -46,17 +53,18 @@ public class Submitted extends HttpServlet {
 				+ "							<td style=\"line-height: 12pt; height: 10px;\"><span\n"
 				+ "								class=\"pagetop\"><b class=\"hnname\"><a href=\"news\">Hacker\n"
 				+ "											News</a></b> <a href=\"newest\">new</a> | <a\n"
-				+ "									href=\"threads?id=alexis302000\">threads</a> | <a href=\"front\">past</a>\n"
+				+ "									href=\"threads?id=" + sessionUser.getUser().getUserName()
+				+ "\">threads</a> | <a href=\"front\">past</a>\n"
 				+ "									| <a href=\"newcomments\">comments</a> | <a href=\"ask\">ask</a> |\n"
 				+ "									<a href=\"show\">show</a> | <a href=\"jobs\">jobs</a> | <a\n"
 				+ "									href=\"Submit\">submit</a> | <font color=\"#ffffff\">"
-				+ sessionUser.getUser().getUserName() + "'s\n"
+				+ user.getUserName() + "'s\n"
 				+ "										submissions</font> </span></td>\n"
 				+ "							<td style=\"text-align: right; padding-right: 4px;\"><span\n"
 				+ "								class=\"pagetop\"> <a id='me' href=\"user?id="
 				+ sessionUser.getUser().getUserName() + "\">" + sessionUser.getUser().getUserName() + "</a>\n"
 				+ "									(" + sessionUser.getUser().getKarma() + ") | <a id='logout'\n"
-				+ "									href=\"HackersNew\">logout</a>\n"
+				+ "									href=\"/HackersNew\">logout</a>\n"
 				+ "							</span></td>\n" + "						</tr>\n"
 				+ "					</table></td>\n" + "			</tr>");
 		out.println("<tr id=\"pagespace\" title=\"" + sessionUser.getUser().getUserName() + "&#x27;s submissions\"\n"
@@ -65,7 +73,7 @@ public class Submitted extends HttpServlet {
 				+ "						class=\"itemlist\">");
 		// noticia
 		int count = 1;
-		for (Notice notice : sessionUser.getUser().getNotices()) {
+		for (Notice notice : user.getNotices()) {
 			out.println("<tr class='athing' id='" + notice.getId() + "'>\n"
 					+ "							<td align=\"right\" valign=\"top\" class=\"title\"><span\n"
 					+ "								class=\"rank\">" + count + ".</span></td>\n"
@@ -81,17 +89,17 @@ public class Submitted extends HttpServlet {
 					+ "							<td colspan=\"2\"></td>\n"
 					+ "							<td class=\"subtext\"><span class=\"score\" id=\"score_"
 					+ notice.getId() + "\">" + notice.getPoints() + "\n"
-					+ "									point</span> by <a href=\"user?id="
+					+ "									points</span> by <a href=\"user?id="
 					+ sessionUser.getUser().getUserName() + "\" class=\"hnuser\">" + sessionUser.getUser().getUserName()
 					+ "</a>\n" + "								<span class=\"age\"><a href=\"item?id=" + notice.getId()
-					+ "\">8\n" + "										minutes ago</a></span> <span id=\"unv_"
-					+ notice.getId() + "\"></span> | <a\n"
-					+ "								href=\"https://hn.algolia.com/?query=" + notice.getTitle()
+					+ "\">" + notice.getAge() + "</a></span> <span id=\"unv_" + notice.getId() + "\"></span> | <a\n"
+					+ "								href=\"https://hn.algolia.com/?query="
+					+ URLEncoder.encode(notice.getTitle(), "utf-8")
 					+ "&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0\"\n"
 					+ "								class=\"hnpast\">past</a> | <a\n"
-					+ "								href=\"https://www.google.com/search?q=" + notice.getTitle()
-					+ "\">web</a> | <a\n" + "								href=\"edit?id=" + notice.getId()
-					+ "\">edit</a> | <a\n"
+					+ "								href=\"https://www.google.com/search?q="
+					+ URLEncoder.encode(notice.getTitle(), "utf-8") + "\">web</a> | <a\n"
+					+ "								href=\"edit?id=" + notice.getId() + "\">edit</a> | <a\n"
 					+ "								href=\"delete-confirm?id=19404484&amp;goto=submitted%3Fid%3Dalexis302000\">delete</a>\n"
 					+ "							</td>\n" + "						</tr>");
 			count++;

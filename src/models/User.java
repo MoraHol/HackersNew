@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -102,5 +103,9 @@ public class User {
 
 	public void setAboutme(String aboutme) {
 		this.aboutme = aboutme;
+	}
+	public String birth() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd,yyyy");
+		return sdf.format(this.createdAt);
 	}
 }

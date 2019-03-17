@@ -48,6 +48,9 @@ public class Item {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public void addPoint() {
+		this.points++;
+	}
 
 	public String getAge() {
 		int difference = (int) ((new Date().getTime() - this.createdAt.getTime()) / 1000);

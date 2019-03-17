@@ -22,7 +22,7 @@ public class Session {
 	}
 
 	public boolean login(String username, String password) {
-		User user = UserController.searchUser(username, password);
+		User user = UserController.validateUser(username, password);
 		if (user != null) {
 			this.user = user;
 			return true;

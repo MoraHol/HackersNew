@@ -1,14 +1,13 @@
 package controllers;
 
 import java.util.ArrayList;
-
 import models.Notice;
 import models.User;
 
 public class NoticeController {
 
-	public Notice searchNotice(int id) {
-		ArrayList<Notice> notices = new ArrayList();
+	public static Notice searchNotice(int id) {
+		ArrayList<Notice> notices = new ArrayList<Notice>();
 		for (User user : UserController.getUsers()) {
 			notices.addAll(user.getNotices());
 		}
@@ -48,17 +47,18 @@ public class NoticeController {
 	}
 
 	public static ArrayList<Notice> getNoticesNewest() {
+		int numberNotices = 19;
 		ArrayList<Notice> noticesNewest = new ArrayList<Notice>();
 		for (User user : UserController.getUsers()) {
 			noticesNewest.addAll(user.getNotices());
 		}
 		noticesNewest = quickSortDate(noticesNewest);
-		try {
-			noticesNewest = (ArrayList<Notice>) noticesNewest.subList(0, 19);
-		} catch (Exception e) {
-			// TODO: handle exception
+		if (noticesNewest.size() > numberNotices) {
+			for (int i = numberNotices; i < noticesNewest.size(); i++) {
+				noticesNewest.remove(i);
+			}
 		}
-		return noticesNewest;
+		return (ArrayList<Notice>) noticesNewest;
 	}
 
 	public static ArrayList<Notice> getNoticesRanking() {

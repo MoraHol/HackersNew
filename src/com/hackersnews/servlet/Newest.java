@@ -75,14 +75,18 @@ public class Newest extends HttpServlet {
 						+ "        <span class=\"score\" id=\"score_" + notice.getId() + "\">" + notice.getPoints()
 						+ " point</span> by <a href=\"user?id=" + notice.getUser().getUserName()
 						+ "\" class=\"hnuser\">" + notice.getUser().getUserName()
-						+ "</a> <span class=\"age\"><a href=\"item?id=" + notice.getId()
-						+ "\">"+notice.getAge()+"</a></span> <span id=\"unv_" + notice.getId()
-						+ "\"></span> | <a href=\"hide?id=" + notice.getId()
-						+ "&amp;goto=newest\">hide</a> | <a href=\"https://hn.algolia.com/?query="
+						+ "</a> <span class=\"age\"><a href=\"item?id=" + notice.getId() + "\">" + notice.getAge()
+						+ "</a></span> <span id=\"unv_" + notice.getId() + "\"></span> | <a href=\"hide?id="
+						+ notice.getId() + "&amp;goto=newest\">hide</a> | <a href=\"https://hn.algolia.com/?query="
 						+ URLEncoder.encode(notice.getTitle(), "utf-8")
 						+ "&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0\" class=\"hnpast\">past</a> | <a href=\"https://www.google.com/search?q="
-						+ URLEncoder.encode(notice.getTitle(), "utf-8") + "\">web</a> | <a href=\"item?id="
-						+ notice.getId() + "\">discuss</a>              </td></tr>");
+						+ URLEncoder.encode(notice.getTitle(), "utf-8") + "\">web</a> | ");
+				if (notice.getComments().size() == 0) {
+					out.println("<a href=\"item?id=" + notice.getId() + "\">discuss</a></td></tr>");
+				}else {
+					out.println("<a href=\"item?id=" + notice.getId() + "\">"+notice.getComments().size()+" comments</a></td></tr>");
+				}
+				
 				counter++;
 			}
 		} catch (Exception e) {

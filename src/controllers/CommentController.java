@@ -6,7 +6,7 @@ import models.Notice;
 import models.User;
 
 public class CommentController {
-	public boolean newComment(User user, Notice notice, Comment parent, String text) {
+	public static boolean newComment(User user, Notice notice, Comment parent, String text) {
 		try {
 			Comment comment = new Comment(user, text, notice, parent);
 			user.getComments().add(comment);

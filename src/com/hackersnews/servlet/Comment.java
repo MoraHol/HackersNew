@@ -7,14 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controllers.CommentController;
 import controllers.NoticeController;
+import models.Notice;
 import models.Session;
+import models.User;
 
 /**
- * Servlet implementation class Submit
+ * Servlet implementation class Comment
  */
-@WebServlet("/Submit")
-public class Submit extends HttpServlet {
+@WebServlet("/comment")
+public class Comment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,14 +27,7 @@ public class Submit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		if (sessionUser != null) {
-			if (sessionUser.isSession()) {
-				getServletContext().getRequestDispatcher("/submit.jsp").forward(request, response);
-			}
-		} else {
-			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-		}
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -41,13 +37,13 @@ public class Submit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// doGet(request, response);
-		String url = request.getParameter("url");
-		String title = request.getParameter("title");
-		// String text = request.getParameter("text");
-		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		NoticeController.createNotice(sessionUser.getUser(), title, url);
-		response.sendRedirect("newest");
+		Notice parentNotice = NoticeController.searchNotice(Integer.parseInt(request.getParameter("parent")));
+		User user = ((Session) request.getSession().getAttribute("sessionUser")).getUser();
+		String text = request.getParameter("text");
+		if (!text.equals("")) {
+			CommentController.newComment(user, parentNotice, null, text);
+		}
+		response.sendRedirect(request.getContextPath() + "/item?id=" + parentNotice.getId());
 	}
 
 }

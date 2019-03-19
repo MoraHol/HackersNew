@@ -57,10 +57,10 @@ public class Newest extends HttpServlet {
 							+ "                              <a href=\"Login\">login</a>\n"
 							+ "                          </span></td>\n" + "              </tr></table></td></tr>");
 		}
+		out.println("<tr id=\"pagespace\" title=\"New Links\" style=\"height:10px\">");
 		try {
 			ArrayList<Notice> noticeNewest = NoticeController.getNoticesNewest();
-			out.println(
-					"<tr id=\"pagespace\" title=\"New Links\" style=\"height:10px\"></tr><tr><td><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"itemlist\">\n"
+			out.println("</tr><tr><td><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"itemlist\">\n"
 							+ "              <tr class='athing' id='" + noticeNewest.get(0).getId() + "'>");
 			int counter = 1;
 			for (Notice notice : noticeNewest) {
@@ -82,9 +82,9 @@ public class Newest extends HttpServlet {
 						+ "&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0\" class=\"hnpast\">past</a> | <a href=\"https://www.google.com/search?q="
 						+ URLEncoder.encode(notice.getTitle(), "utf-8") + "\">web</a> | ");
 				if (notice.getComments().size() == 0) {
-					out.println("<a href=\"item?id=" + notice.getId() + "\">discuss</a></td></tr>");
+					out.println("<a href=\"item?id=" + notice.getId() + "\">discuss</a></td></tr></table></td></tr>");
 				}else {
-					out.println("<a href=\"item?id=" + notice.getId() + "\">"+notice.getComments().size()+" comments</a></td></tr>");
+					out.println("<a href=\"item?id=" + notice.getId() + "\">"+notice.getComments().size()+" comments</a></td></tr></table></td></tr>");
 				}
 				
 				counter++;
@@ -93,7 +93,7 @@ public class Newest extends HttpServlet {
 
 		}
 		out.println(
-				"</table></tr><tr><td><img src=\"s.gif\" height=\"10\" width=\"0\"><table width=\"100%\" cellspacing=\"0\" cellpadding=\"1\"><tbody><tr><td bgcolor=\"#ff6600\"></td></tr></tbody></table><br><center><a href=\"https://www.ycombinator.com/apply/\">\n"
+				"<tr><td><img src=\"s.gif\" height=\"10\" width=\"0\"><table width=\"100%\" cellspacing=\"0\" cellpadding=\"1\"><tbody><tr><td bgcolor=\"#ff6600\"></td></tr></tbody></table><br><center><a href=\"https://www.ycombinator.com/apply/\">\n"
 						+ "        Applications are open for YC Summer 2019\n"
 						+ "      </a></center><br><center><span class=\"yclinks\"><a href=\"newsguidelines.html\">Guidelines</a>\n"
 						+ "        | <a href=\"newsfaq.html\">FAQ</a>\n"

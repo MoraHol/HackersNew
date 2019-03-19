@@ -29,9 +29,11 @@ public class Item extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Notice notice = NoticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
+		if(notice != null) {
 		PrintWriter out = response.getWriter();
 		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		Notice notice = NoticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
+		
 		out.println("<html op=\"item\"><head><meta name=\"referrer\" content=\"origin\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" type=\"text/css\" href=\"css/index.css\">\n" + 
 				"            <link rel=\"shortcut icon\" href=\"favicon.ico\">\n" + 
 				"        <title> "+notice.getTitle()+" | Hacker News</title></head><body><center>");
@@ -97,6 +99,9 @@ public class Item extends HttpServlet {
 				"      </tbody></table></center><script type=\"text/javascript\" src=\"hn.js\"></script>\n" + 
 				"  \n" + 
 				"</body></html>");
+		}else {
+			
+		}
 	}
 
 	/**

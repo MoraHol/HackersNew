@@ -4,7 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User {
+public class User{
+	private int id;
 	private String userName;
 	private String password;
 	private ArrayList<Notice> notices;
@@ -23,6 +24,10 @@ public class User {
 		this.email = "";
 		this.createdAt = new Date();
 		this.aboutme = "";
+	}
+
+	public User() {
+
 	}
 
 	public Date getCreatedAt() {
@@ -104,8 +109,17 @@ public class User {
 	public void setAboutme(String aboutme) {
 		this.aboutme = aboutme;
 	}
+
 	public String birth() {
 		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd,yyyy");
 		return sdf.format(this.createdAt);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int i) {
+		this.id = i;
 	}
 }

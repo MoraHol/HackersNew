@@ -1,6 +1,8 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import models.Notice;
 import models.User;
 
@@ -12,19 +14,20 @@ public class NoticeController {
 			notices.addAll(user.getNotices());
 		}
 		notices = quickSortId(notices);
+		new Date();
 		return binarySearch(notices, id);
 	}
 
-	public static boolean createNotice(User user, String title, String url) {
-		try {
-			Notice notice = new Notice(user, title, url);
-			user.getNotices().add(notice);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return false;
-		}
-	}
+//	public static boolean createNotice(User user, String title, String url) {
+//		try {
+//			Notice notice = new Notice(user, title, url);
+//			user.getNotices().add(notice);
+//			return true;
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			return false;
+//		}
+//	}
 
 	public static boolean deleteNotice(Notice notice) {
 		try {

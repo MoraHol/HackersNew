@@ -3,6 +3,7 @@ package models;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Notice extends Item {
 	private String url;
@@ -10,8 +11,8 @@ public class Notice extends Item {
 	private String type;
 	private ArrayList<Comment> comments;
 
-	public Notice(User user, String title, String url) {
-		super(user);
+	public Notice(User user,int id, String title, String url, Date createdAt) {
+		super(user,id,createdAt);
 		this.title = title;
 		this.url = url;
 		comments = new ArrayList<Comment>();

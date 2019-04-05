@@ -8,8 +8,8 @@ public class Comment extends Item {
 	private Comment parentComment;
 	private ArrayList<Comment> childs;
 	
-	public Comment(User user, String text, Notice parentNotice, Comment parentComment) {
-		super(user);
+	public Comment(User user, int id, String text, Notice parentNotice, Comment parentComment) {
+		super(user,id);
 		this.text = text;
 		this.parentNotice = parentNotice;
 		this.parentComment = parentComment;

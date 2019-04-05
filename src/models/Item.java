@@ -1,20 +1,32 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Item {
 	private Date createdAt;
 	private int id;
-	private int points;
+	private ArrayList<String> points;
 	private User user;
-	private static int idSerial = 1;
+	private boolean active;
 
-	public Item(User user) {
+	public Item(User user,int id) {
+		this.id = id;
 		this.user = user;
 		this.createdAt = new Date();
-		this.points = 0;
-		this.id = idSerial;
-		idSerial++;
+		this.points = new ArrayList<String>();
+	}
+	public Item(User user,int id,Date createdAt) {
+		this.id = id;
+		this.user = user;
+		this.createdAt = createdAt;
+		this.points = new ArrayList<String>();
+	}
+	public Item(User user,int id,Date createdAt, ArrayList<String> points) {
+		this.id = id;
+		this.user = user;
+		this.createdAt = createdAt;
+		this.points = points;
 	}
 
 	public Date getCreatedAt() {
@@ -34,11 +46,20 @@ public class Item {
 	}
 
 	public int getPoints() {
-		return points;
+		return this.points.size();
 	}
 
-	public void setPoints(int points) {
+	public void setPoints(ArrayList<String> points) {
 		this.points = points;
+	}
+
+	public boolean userVoted(String userId) {
+		if (this.points.contains(userId)) {
+			System.out.println(this.points.contains(userId));
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public User getUser() {
@@ -48,8 +69,13 @@ public class Item {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public void addPoint() {
-		this.points++;
+
+	public void addPoint(String userId) {
+		this.points.add(userId);
+	}
+
+	public void removePoint(String userId) {
+		this.points.remove(userId);
 	}
 
 	public String getAge() {
@@ -74,5 +100,11 @@ public class Item {
 		} else {
 			return difference + " seconds ago";
 		}
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

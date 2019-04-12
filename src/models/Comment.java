@@ -6,14 +6,18 @@ public class Comment extends Item {
 	private String text;
 	private Notice parentNotice;
 	private Comment parentComment;
-	private ArrayList<Comment> childs;
 	
 	public Comment(User user, int id, String text, Notice parentNotice, Comment parentComment) {
 		super(user,id);
 		this.text = text;
 		this.parentNotice = parentNotice;
 		this.parentComment = parentComment;
-		setChilds(new ArrayList<Comment>());
+	}
+	public Comment(User user, String text, Notice parentNotice, Comment parentComment) {
+		super(user);
+		this.text = text;
+		this.parentNotice = parentNotice;
+		this.parentComment = parentComment;
 	}
 
 	public String getText() {
@@ -39,13 +43,4 @@ public class Comment extends Item {
 	public void setParentComment(Comment parentComment) {
 		this.parentComment = parentComment;
 	}
-
-	public ArrayList<Comment> getChilds() {
-		return childs;
-	}
-
-	public void setChilds(ArrayList<Comment> childs) {
-		this.childs = childs;
-	}
-
 }

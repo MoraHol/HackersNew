@@ -9,13 +9,16 @@ public class Notice extends Item {
 	private String url;
 	private String title;
 	private String type;
-	private ArrayList<Comment> comments;
 
 	public Notice(User user,int id, String title, String url, Date createdAt) {
 		super(user,id,createdAt);
 		this.title = title;
 		this.url = url;
-		comments = new ArrayList<Comment>();
+	}
+	public Notice(User user, String title, String url, Date createdAt) {
+		super(user,createdAt);
+		this.title = title;
+		this.url = url;
 	}
 
 	public String getUrl() {
@@ -40,14 +43,6 @@ public class Notice extends Item {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public ArrayList<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(ArrayList<Comment> comments) {
-		this.comments = comments;
 	}
 
 	public String getDomainUrl() {

@@ -8,8 +8,6 @@ public class User{
 	private int id;
 	private String userName;
 	private String password;
-	private ArrayList<Notice> notices;
-	private ArrayList<Comment> comments;
 	private int karma;
 	private String email;
 	private Date createdAt;
@@ -19,8 +17,6 @@ public class User{
 		this.userName = userName;
 		this.password = password;
 		this.karma = 0;
-		this.notices = new ArrayList<Notice>();
-		this.comments = new ArrayList<Comment>();
 		this.email = "";
 		this.createdAt = new Date();
 		this.aboutme = "";
@@ -44,22 +40,6 @@ public class User{
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public ArrayList<Notice> getNotices() {
-		return notices;
-	}
-
-	public void setNotices(ArrayList<Notice> notices) {
-		this.notices = notices;
-	}
-
-	public ArrayList<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(ArrayList<Comment> comments) {
-		this.comments = comments;
 	}
 
 	public int getKarma() {

@@ -1,35 +1,32 @@
 package controllers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import models.Comment;
-
+import models.CommentDao;
 import models.Notice;
 import models.User;
 
 public class CommentController {
-//	public static boolean newComment(User user, Notice notice, Comment parent, String text) {
-//		try {
-//			Comment comment = new Comment(user, text, notice, parent);
-//			user.getComments().add(comment);
-//			notice.getComments().add(comment);
-//			return true;
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			return false;
-//		}
-//	}
-
-	public static Comment searchComment(int id) {
-		ArrayList<Comment> comments = new ArrayList<Comment>();
-		for (User user : UserController.getUsers()) {
-			comments.addAll(user.getComments());
+	public static boolean newComment(User user, Notice notice, Comment parent, String text) {
+		try {
+			Comment comment = new Comment(user, text, notice, parent);
+			CommentDao.save(comment);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
 		}
-		comments= quickSortId(comments);
-		return binarySearch(comments, id);
+	}
+
+	public static Comment searchComment(int id){
+		return CommentDao.getCommentById(id);
 	}
 
 	public boolean editComment(Comment comment, String text) {
+		comment.setText(text);
+		CommentDao.update(comment);
 		return false;
 	}
 

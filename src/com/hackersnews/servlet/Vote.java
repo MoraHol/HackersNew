@@ -13,8 +13,10 @@ import controllers.CommentController;
 import controllers.NoticeController;
 import models.User;
 import models.Notice;
+import models.NoticeDao;
 import models.Session;
 import models.Comment;
+import models.CommentDao;
 
 /**
  * Servlet implementation class Vote
@@ -31,18 +33,18 @@ public class Vote extends HttpServlet {
 		User user = ((Session) request.getSession().getAttribute("sessionUser")).getUser();
 		if (NoticeController.searchNotice(Integer.parseInt(request.getParameter("id"))) != null) {
 			Notice item = NoticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
-			if (request.getParameter("how").equals("up") && item.userVoted(user.getUserName())) {
-				item.addPoint(user.getUserName());
+			if (request.getParameter("how").equals("up")) {
+				NoticeDao.rateNotice(user, item);
 			} else {
-				item.removePoint(user.getUserName());
+				NoticeDao.removePoint(user, item);
 			}
 			response.sendRedirect(request.getContextPath() + "/newest");
 		} else if (CommentController.searchComment(Integer.parseInt(request.getParameter("id"))) != null) {
 			Comment item = CommentController.searchComment(Integer.parseInt(request.getParameter("id")));
 			if (request.getParameter("how").equals("up")) {
-				item.addPoint(user.getUserName());
+				CommentDao.rateComment(user, item);
 			} else {
-				item.removePoint(user.getUserName());
+				CommentDao.removePoint(user, item);
 			}
 			response.sendRedirect(request.getContextPath() + "/item?id="+item.getParentNotice().getId());
 		}

@@ -1,37 +1,36 @@
 package controllers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import models.User;
+import models.UserDao;
 
 public class UserController {
-	private static List<User> users = new ArrayList<User>();
-
-	public static void setUsers(List<User> users) {
-		UserController.users = users;
-	}
-
-	public static List<User> getUsers() {
-		return users;
+	public static ArrayList<User> getUsers() {
+		return UserDao.getAllUsers();
 	}
 
 	public static User validateUser(String username, String password) {
-		for (User user : users) {
+		User user = UserDao.getUserByUserName(username);
+		if (user.getUserName() != null) {
 			if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
 				return user;
+			} else {
+				return null;
 			}
+		}else {
+			return null;
 		}
-		return null;
+
 	}
 
 	public static User searchUser(String username) {
-		for (User user : users) {
-			if (user.getUserName().equals(username)) {
-				return user;
-			}
+		User user = UserDao.getUserByUserName(username);
+		if (user.getUserName().equals(username)) {
+			return user;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	public static User createAccount(String username, String password) {
@@ -41,7 +40,7 @@ public class UserController {
 				return null;
 			} else {
 				user = new User(username, password);
-				users.add(user);
+				UserDao.save(user);
 				return user;
 			}
 		} catch (Exception e) {

@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controllers.NoticeController;
+import models.CommentDao;
 import models.Notice;
+import models.NoticeDao;
 import models.Session;
 
 /**
@@ -61,7 +63,7 @@ public class Newest extends HttpServlet {
 		try {
 			ArrayList<Notice> noticeNewest = NoticeController.getNoticesNewest();
 			out.println("</tr><tr><td><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"itemlist\">\n"
-							+ "              <tr class='athing' id='" + noticeNewest.get(0).getId() + "'>");
+					+ "              <tr class='athing' id='" + noticeNewest.get(0).getId() + "'>");
 			int counter = 1;
 			for (Notice notice : noticeNewest) {
 				out.println("<td align=\"right\" valign=\"top\" class=\"title\"><span class=\"rank\">" + counter
@@ -72,7 +74,7 @@ public class Newest extends HttpServlet {
 						+ "</a><span class=\"sitebit comhead\"> (<a href=\"from?site=" + notice.getDomainUrl()
 						+ "\"><span class=\"sitestr\">" + notice.getDomainUrl()
 						+ "</span></a>)</span></td></tr><tr><td colspan=\"2\"></td><td class=\"subtext\">\n"
-						+ "        <span class=\"score\" id=\"score_" + notice.getId() + "\">" + notice.getPoints()
+						+ "        <span class=\"score\" id=\"score_" + notice.getId() + "\">" + NoticeDao.findPointsByNotice(notice)
 						+ " point</span> by <a href=\"user?id=" + notice.getUser().getUserName()
 						+ "\" class=\"hnuser\">" + notice.getUser().getUserName()
 						+ "</a> <span class=\"age\"><a href=\"item?id=" + notice.getId() + "\">" + notice.getAge()
@@ -81,14 +83,16 @@ public class Newest extends HttpServlet {
 						+ URLEncoder.encode(notice.getTitle(), "utf-8")
 						+ "&sort=byDate&dateRange=all&type=story&storyText=false&prefix&page=0\" class=\"hnpast\">past</a> | <a href=\"https://www.google.com/search?q="
 						+ URLEncoder.encode(notice.getTitle(), "utf-8") + "\">web</a> | ");
-				if (notice.getComments().size() == 0) {
-					out.println("<a href=\"item?id=" + notice.getId() + "\">discuss</a></td></tr></table></td></tr>");
-				}else {
-					out.println("<a href=\"item?id=" + notice.getId() + "\">"+notice.getComments().size()+" comments</a></td></tr></table></td></tr>");
+				if (CommentDao.getCommentsByNotice(notice.getId()).size() == 0) {
+					out.println("<a href=\"item?id=" + notice.getId() + "\">discuss</a></td></tr>");
+				} else {
+					out.println("<a href=\"item?id=" + notice.getId() + "\">" + CommentDao.getCommentsByNotice(notice.getId()).size()
+							+ " comments</a></td></tr>");
 				}
-				
+
 				counter++;
 			}
+			out.println("</table></td></tr>");
 		} catch (Exception e) {
 
 		}

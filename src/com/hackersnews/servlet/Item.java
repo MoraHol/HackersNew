@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import controllers.NoticeController;
 import models.Comment;
+import models.CommentDao;
 import models.Notice;
+import models.NoticeDao;
 import models.Session;
 
 /**
@@ -62,14 +64,14 @@ public class Item extends HttpServlet {
 		out.println("<tr id=\"pagespace\" title=\""+notice.getTitle()+"\" style=\"height:10px\"></tr><tr><td><table class=\"fatitem\" border=\"0\">\n" + 
 				"        <tbody><tr class=\"athing\" id=\""+notice.getId()+"\">\n" + 
 				"      <td align=\"right\" valign=\"top\" class=\"title\"><span class=\"rank\"></span></td>      <td valign=\"top\" class=\"votelinks\"><center><a id=\"up_"+notice.getId()+"\" href=\"vote?id="+notice.getId()+"&amp;how=up&amp;goto=item%3Fid%3D19417110\"><div class=\"votearrow\" title=\"upvote\"></div></a></center></td><td class=\"title\"><a href=\""+notice.getUrl()+"\" class=\"storylink\" rel=\"nofollow\">"+notice.getTitle()+"</a><span class=\"sitebit comhead\"> (<a href=\"from?site="+notice.getDomainUrl()+"\"><span class=\"sitestr\">"+notice.getDomainUrl()+"</span></a>)</span></td></tr><tr><td colspan=\"2\"></td><td class=\"subtext\">\n" + 
-				"        <span class=\"score\" id=\"score_"+notice.getId()+"\">"+notice.getPoints()+" point</span> by <a href=\"user?id="+notice.getUser().getUserName()+"\" class=\"hnuser\">"+notice.getUser().getUserName()+"</a> <span class=\"age\"><a href=\"item?id="+notice.getId()+"\">"+notice.getAge()+"</a></span> <span id=\"unv_"+notice.getId()+"\"></span> | <a href=\"hide?id="+notice.getId()+"&amp;goto=item%3Fid%3D19417110\">hide</a> | <a href=\"https://hn.algolia.com/?query="+URLEncoder.encode(notice.getTitle(), "utf-8")+"&amp;sort=byDate&amp;dateRange=all&amp;type=story&amp;storyText=false&amp;prefix&amp;page=0\" class=\"hnpast\">past</a> | <a href=\"https://www.google.com/search?q="+URLEncoder.encode(notice.getTitle(),"utf-8")+"\">web</a> | <a href=\"fave?id="+notice.getId()+"&amp;auth=e68835b51b5087a0775cfa3ef4287e2914dfaffb\">favorite</a> | <a href=\"item?id="+notice.getId()+"\">"+notice.getComments().size()+"&nbsp;comment</a>              </td></tr>\n" + 
+				"        <span class=\"score\" id=\"score_"+notice.getId()+"\">"+NoticeDao.findPointsByNotice(notice)+" point</span> by <a href=\"user?id="+notice.getUser().getUserName()+"\" class=\"hnuser\">"+notice.getUser().getUserName()+"</a> <span class=\"age\"><a href=\"item?id="+notice.getId()+"\">"+notice.getAge()+"</a></span> <span id=\"unv_"+notice.getId()+"\"></span> | <a href=\"hide?id="+notice.getId()+"&amp;goto=item%3Fid%3D19417110\">hide</a> | <a href=\"https://hn.algolia.com/?query="+URLEncoder.encode(notice.getTitle(), "utf-8")+"&amp;sort=byDate&amp;dateRange=all&amp;type=story&amp;storyText=false&amp;prefix&amp;page=0\" class=\"hnpast\">past</a> | <a href=\"https://www.google.com/search?q="+URLEncoder.encode(notice.getTitle(),"utf-8")+"\">web</a> | <a href=\"fave?id="+notice.getId()+"&amp;auth=e68835b51b5087a0775cfa3ef4287e2914dfaffb\">favorite</a> | <a href=\"item?id="+notice.getId()+"\">"+CommentDao.getCommentsByNotice(notice.getId()).size()+"&nbsp;comment</a>              </td></tr>\n" + 
 				"            <tr style=\"height:10px\"></tr><tr><td colspan=\"2\"></td><td>\n" + 
 				"          <form method=\"post\" action=\"comment\"><input type=\"hidden\" name=\"parent\" value=\""+notice.getId()+"\"><textarea name=\"text\" rows=\"6\" cols=\"60\"></textarea>\n" + 
 				"                <br><br><input type=\"submit\" value=\"add comment\"></form>\n" + 
 				"      </td></tr>\n" + 
 				"  </tbody></table><br><br>\n");
 		out.println("<table border=\"0\" class=\"comment-tree\"><tbody>");
-		for (Comment comment : notice.getComments()) {
+		for (Comment comment : CommentDao.getCommentsByNotice(notice.getId())) {
 			out.println("<tr class=\"athing comtr \" id=\""+comment.getId()+"\"><td>\n" + 
 					"            <table border=\"0\">  <tbody><tr>    <td class=\"ind\"><img src=\"s.gif\" height=\"1\" width=\"0\"></td><td valign=\"top\" class=\"votelinks\"><center><a id=\"up_"+comment.getId()+"\" href=\"vote?id="+comment.getId()+"&amp;how=up&amp;goto=item%3Fid%3D19417110\"><div class=\"votearrow\" title=\"upvote\"></div></a></center></td><td class=\"default\"><div style=\"margin-top:2px; margin-bottom:-10px;\"><span class=\"comhead\">\n" + 
 					"          <a href=\"user?id="+comment.getUser().getUserName()+"\" class=\"hnuser\">"+comment.getUser().getUserName()+"</a> <span class=\"age\"><a href=\"item?id="+comment.getId()+"\">"+comment.getAge()+"</a></span> <span id=\"unv_"+comment.getId()+"\"></span><span class=\"par\"></span> <a class=\"togg\" n=\"1\" href=\"javascript:void(0)\" onclick=\"return toggle(event, "+comment.getId()+")\">[-]</a>          <span class=\"storyon\"></span>\n" + 

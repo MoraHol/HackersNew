@@ -6,27 +6,27 @@ import java.util.Date;
 public class Item {
 	private Date createdAt;
 	private int id;
-	private ArrayList<String> points;
 	private User user;
 	private boolean active;
-
+	
+	public Item(User user) {
+		this.user = user;
+		this.createdAt = new Date();
+	}
+	
 	public Item(User user,int id) {
 		this.id = id;
 		this.user = user;
 		this.createdAt = new Date();
-		this.points = new ArrayList<String>();
 	}
 	public Item(User user,int id,Date createdAt) {
 		this.id = id;
 		this.user = user;
 		this.createdAt = createdAt;
-		this.points = new ArrayList<String>();
 	}
-	public Item(User user,int id,Date createdAt, ArrayList<String> points) {
-		this.id = id;
+	public Item(User user,Date createdAt) {
 		this.user = user;
 		this.createdAt = createdAt;
-		this.points = points;
 	}
 
 	public Date getCreatedAt() {
@@ -45,37 +45,12 @@ public class Item {
 		this.id = id;
 	}
 
-	public int getPoints() {
-		return this.points.size();
-	}
-
-	public void setPoints(ArrayList<String> points) {
-		this.points = points;
-	}
-
-	public boolean userVoted(String userId) {
-		if (this.points.contains(userId)) {
-			System.out.println(this.points.contains(userId));
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public void addPoint(String userId) {
-		this.points.add(userId);
-	}
-
-	public void removePoint(String userId) {
-		this.points.remove(userId);
 	}
 
 	public String getAge() {

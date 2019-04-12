@@ -1,37 +1,40 @@
 package controllers;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import models.CommentDao;
 import models.Notice;
+import models.NoticeDao;
 import models.User;
 
 public class NoticeController {
 
 	public static Notice searchNotice(int id) {
-		ArrayList<Notice> notices = new ArrayList<Notice>();
-		for (User user : UserController.getUsers()) {
-			notices.addAll(user.getNotices());
+		try {
+			return NoticeDao.getNoticeById(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
-		notices = quickSortId(notices);
-		new Date();
-		return binarySearch(notices, id);
 	}
 
-//	public static boolean createNotice(User user, String title, String url) {
-//		try {
-//			Notice notice = new Notice(user, title, url);
-//			user.getNotices().add(notice);
-//			return true;
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			return false;
-//		}
-//	}
+	public static boolean createNotice(User user, String title, String url) {
+		try {
+			Notice notice = new Notice(user, title, url, new Date());
+			NoticeDao.save(notice);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
 
 	public static boolean deleteNotice(Notice notice) {
 		try {
-			notice.getUser().getNotices().remove(notice);
+			NoticeDao.delete(notice.getId());
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -42,6 +45,7 @@ public class NoticeController {
 	public static boolean editNotice(Notice notice, String title) {
 		try {
 			notice.setTitle(title);
+			NoticeDao.update(notice);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -51,10 +55,9 @@ public class NoticeController {
 
 	public static ArrayList<Notice> getNoticesNewest() {
 		int numberNotices = 19;
-		ArrayList<Notice> noticesNewest = new ArrayList<Notice>();
-		for (User user : UserController.getUsers()) {
-			noticesNewest.addAll(user.getNotices());
-		}
+		ArrayList<Notice> noticesNewest = null;
+			noticesNewest = NoticeDao.findAllNotices();
+		
 		noticesNewest = quickSortDate(noticesNewest);
 		if (noticesNewest.size() > numberNotices) {
 			for (int i = numberNotices; i < noticesNewest.size(); i++) {
@@ -64,11 +67,9 @@ public class NoticeController {
 		return (ArrayList<Notice>) noticesNewest;
 	}
 
-	public static ArrayList<Notice> getNoticesRanking() {
-		ArrayList<Notice> noticesRanking = new ArrayList<Notice>();
-		for (User user : UserController.getUsers()) {
-			noticesRanking.addAll(user.getNotices());
-		}
+	public static ArrayList<Notice> getNoticesRanking() throws SQLException {
+		ArrayList<Notice> noticesRanking = NoticeDao.findAllNotices();
+		
 		noticesRanking = quickSortPoints(noticesRanking);
 		try {
 			noticesRanking = (ArrayList<Notice>) noticesRanking.subList(0, 19);
@@ -142,7 +143,7 @@ public class NoticeController {
 			// tomar el primer elemento como pivote
 			Notice pivot = array.get(0);
 			for (int i = 1; i < array.size(); i++) {
-				if (array.get(i).getPoints() > pivot.getPoints()) {
+				if (NoticeDao.findPointsByNotice(array.get(i)) > NoticeDao.findPointsByNotice(pivot)) {
 					less_subarray.add(array.get(i));
 				} else {
 					greater_subarray.add(array.get(i));

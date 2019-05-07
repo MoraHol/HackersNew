@@ -1,6 +1,5 @@
 package controllers;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import models.Comment;
@@ -30,7 +29,7 @@ public class CommentController {
 		return false;
 	}
 
-	public boolean rateCommment(Comment comment) {
+	public boolean rateCommment(Comment comment, User user) {
 		return false;
 	}
 

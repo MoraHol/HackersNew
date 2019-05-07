@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import models.CommentDao;
 import models.Notice;
 import models.NoticeDao;
 import models.User;

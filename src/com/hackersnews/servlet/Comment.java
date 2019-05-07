@@ -37,6 +37,7 @@ public class Comment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try {
 		Notice parentNotice = NoticeController.searchNotice(Integer.parseInt(request.getParameter("parent")));
 		User user = ((Session) request.getSession().getAttribute("sessionUser")).getUser();
 		String text = request.getParameter("text");
@@ -44,6 +45,10 @@ public class Comment extends HttpServlet {
 			CommentController.newComment(user, parentNotice, null, text);
 		}
 		response.sendRedirect(request.getContextPath() + "/item?id=" + parentNotice.getId());
+		}catch (Exception e) {
+			// TODO: handle exception
+			response.sendRedirect("Login");
+		}
 	}
 
 }

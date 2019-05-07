@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-
 public class Comment extends Item {
 	private String text;
 	private Notice parentNotice;

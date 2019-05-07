@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="models.Session"%>
 <%@ page import="java.util.Date"%>
-<%Session sessionUser = (Session) session.getAttribute("sessionUser"); %>
+<%
+	Session sessionUser = (Session) session.getAttribute("sessionUser");
+%>
 <!DOCTYPE html>
 <html op="user">
 <head>
@@ -10,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="icon" href="favicon.ico">
-<title>Profile: <%=sessionUser.getUser().getUserName() %> |
+<title>Profile: <%=sessionUser.getUser().getUserName()%> |
 	Hacker News
 </title>
 </head>
@@ -34,15 +36,15 @@
 									href="Submit">submit</a> </span></td>
 							<td style="text-align: right; padding-right: 4px;"><span
 								class="pagetop"> <a id='me'
-									href="user?id= <%=sessionUser.getUser().getUserName() %>">
-										<%=sessionUser.getUser().getUserName() %></a> (<%=sessionUser.getUser().getKarma() %>)
+									href="user?id= <%=sessionUser.getUser().getUserName()%>">
+										<%=sessionUser.getUser().getUserName()%></a> (<%=sessionUser.getUser().getKarma()%>)
 									| <a id='logout' href="/HackersNew">logout</a>
 							</span></td>
 						</tr>
 					</table></td>
 			</tr>
 			<tr id="pagespace"
-				title="Profile:  <%=sessionUser.getUser().getUserName() %>"
+				title="Profile:  <%=sessionUser.getUser().getUserName()%>"
 				style="height: 10px"></tr>
 			<tr>
 				<td><form class="profileform" method="post" action="/xuser">
@@ -53,17 +55,19 @@
 							<tr class='athing'>
 								<td valign="top">user:</td>
 								<td timestamp="1550616503"><a href="user?id=alexis302000"
-									class="hnuser"> <%=sessionUser.getUser().getUserName() %></a></td>
+									class="hnuser"> <%=sessionUser.getUser().getUserName()%></a></td>
 							</tr>
 							<tr>
 								<td valign="top">created:</td>
-								<%int dias = (int)((new Date().getTime()-sessionUser.getUser().getCreatedAt().getTime())/86400000); %>
-								<td><a href="front?day=2019-02-19&birth=alexis302000"><%= dias%>
+								<%
+									int dias = (int) ((new Date().getTime() - sessionUser.getUser().getCreatedAt().getTime()) / 86400000);
+								%>
+								<td><a href="front?day=2019-02-19&birth=alexis302000"><%=dias%>
 										days ago</a></td>
 							</tr>
 							<tr>
 								<td valign="top">karma:</td>
-								<td><%=sessionUser.getUser().getKarma() %></td>
+								<td><%=sessionUser.getUser().getKarma()%></td>
 							</tr>
 							<tr>
 								<td valign="top">about:</td>
@@ -75,7 +79,7 @@
 							<tr>
 								<td valign="top">email:</td>
 								<td><input type="text" name="uemail"
-									value="<%=sessionUser.getUser().getEmail() %>" size="60"></td>
+									value="<%=sessionUser.getUser().getEmail()%>" size="60"></td>
 							</tr>
 							<tr>
 								<td valign="top">showdead:</td>
@@ -106,12 +110,12 @@
 							<tr>
 								<td></td>
 								<td><a
-									href="submitted?id=<%=sessionUser.getUser().getUserName() %>"><u>submissions</u></a></td>
+									href="submitted?id=<%=sessionUser.getUser().getUserName()%>"><u>submissions</u></a></td>
 							</tr>
 							<tr>
 								<td></td>
 								<td><a
-									href="threads?id= <%=sessionUser.getUser().getUserName() %>"><u>comments</u></a></td>
+									href="threads?id=<%=sessionUser.getUser().getUserName()%>"><u>comments</u></a></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -120,7 +124,7 @@
 							<tr>
 								<td></td>
 								<td><a
-									href="upvoted?id=<%=sessionUser.getUser().getUserName() %>"><u>upvoted
+									href="upvoted?id=<%=sessionUser.getUser().getUserName()%>"><u>upvoted
 											submissions</u></a> / <a
 									href="upvoted?id=alexis302000&amp;comments=t"><u>comments</u></a>
 									&nbsp;<span style='font-style: italic'>(private)</span></td>
@@ -128,7 +132,7 @@
 							<tr>
 								<td></td>
 								<td><a
-									href="favorites?id=<%=sessionUser.getUser().getUserName() %>"><u>favorite
+									href="favorites?id=<%=sessionUser.getUser().getUserName()%>"><u>favorite
 											submissions</u></a> / <a
 									href="favorites?id=alexis302000&amp;comments=t"><u>comments</u></a>
 									&nbsp;<span style='font-style: italic'>(shared)</span></td>
@@ -139,6 +143,8 @@
 			</tr>
 		</table>
 	</center>
-	<%System.out.println(sessionUser.getUser().getCreatedAt()); %>
+	<%
+		System.out.println(sessionUser.getUser().getCreatedAt());
+	%>
 </body>
 </html>

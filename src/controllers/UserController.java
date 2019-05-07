@@ -1,5 +1,7 @@
 package controllers;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import models.User;
@@ -13,7 +15,7 @@ public class UserController {
 	public static User validateUser(String username, String password) {
 		User user = UserDao.getUserByUserName(username);
 		if (user.getUserName() != null) {
-			if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
+			if (user.getUserName().equals(username) && user.getPassword().equals(convertSHA256(password))) {
 				return user;
 			} else {
 				return null;
@@ -39,7 +41,7 @@ public class UserController {
 			if (user != null) {
 				return null;
 			} else {
-				user = new User(username, password);
+				user = new User(username, convertSHA256(password));
 				UserDao.save(user);
 				return user;
 			}
@@ -47,4 +49,22 @@ public class UserController {
 			return null;
 		}
 	}
+	 private static String convertSHA256(String password) {
+	        MessageDigest md;
+	        try {
+	            md = MessageDigest.getInstance("SHA-256");
+	        } catch (NoSuchAlgorithmException e) {
+	            return null;
+	        }
+
+	        byte[] hash = md.digest(password.getBytes());
+	        StringBuilder sb = new StringBuilder();
+
+	        for (byte b : hash) {
+	            sb.append(String.format("%02x", b));
+	        }
+
+	        return sb.toString();
+	    }
+
 }

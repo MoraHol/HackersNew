@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Session;
+import models.UserDao;
 
 /**
  * Servlet implementation class ChangePassword
@@ -63,6 +64,7 @@ public class ChangePassword extends HttpServlet {
 		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
 		if (oldPassword.equals(sessionUser.getUser().getPassword())) {
 			sessionUser.getUser().setPassword(password);
+			UserDao.update(sessionUser.getUser());
 			response.sendRedirect(request.getContextPath() + "/newest");
 		} else {
 			response.sendRedirect(request.getContextPath() + "/changepw?wrongpw=t");

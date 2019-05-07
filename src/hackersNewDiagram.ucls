@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="models.Session" project="HackersNew" file="/HackersNew/src/models/Session.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="187" width="202" x="3825" y="781"/>    
+  <class id="1" language="java" name="com.hackersnews.servlet.Newest" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Newest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="133" width="286" x="2577" y="1186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,153 +12,244 @@
   </class>  
   <class id="2" language="java" name="models.Notice" project="HackersNew" file="/HackersNew/src/models/Notice.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="295" width="223" x="3865" y="2184"/>    
+    <position height="-1" width="-1" x="7189" y="2314"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="models.Item" project="HackersNew" file="/HackersNew/src/models/Item.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="439" width="202" x="4069" y="781"/>    
+  <class id="3" language="java" name="com.hackersnews.servlet.Item" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Item.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="133" width="286" x="2903" y="1186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="models.User" project="HackersNew" file="/HackersNew/src/models/User.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3484" y="1611"/>    
+  <class id="4" language="java" name="com.hackersnews.servlet.Threads" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Threads.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="133" width="286" x="3229" y="1186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="models.Comment" project="HackersNew" file="/HackersNew/src/models/Comment.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4372" y="1879"/>    
+  <class id="5" language="java" name="com.hackersnews.servlet.UserServlet" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/UserServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="133" width="286" x="3555" y="1186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="models.CommentDao" project="HackersNew" 
-    file="/HackersNew/src/models/CommentDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="205" width="263" x="2869" y="1011"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="models.NoticeDao" project="HackersNew" 
-    file="/HackersNew/src/models/NoticeDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="187" width="229" x="3172" y="1011"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="models.UserDao" project="HackersNew" file="/HackersNew/src/models/UserDao.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="205" width="190" x="3441" y="1011"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="controllers.CommentController" project="HackersNew" 
+  <class id="6" language="java" name="controllers.CommentController" project="HackersNew" 
     file="/HackersNew/src/controllers/CommentController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="292" x="2454" y="1886"/>    
+    <position height="-1" width="-1" x="4451" y="1045"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="controllers.UserController" project="HackersNew" 
+  <class id="7" language="java" name="models.Session" project="HackersNew" file="/HackersNew/src/models/Session.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="187" width="202" x="3881" y="1186"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.hackersnews.servlet.Vote" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Vote.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4852" y="942"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.hackersnews.servlet.Comment" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Comment.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4878" y="1134"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="models.Item" project="HackersNew" file="/HackersNew/src/models/Item.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7250" y="1784"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="11" language="java" name="com.hackersnews.servlet" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5195" y="942"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="12" language="java" name="models.User" project="HackersNew" file="/HackersNew/src/models/User.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="511" width="150" x="5338" y="1575"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="models.NoticeDao" project="HackersNew" 
+    file="/HackersNew/src/models/NoticeDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="313" width="285" x="5319" y="1186"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.hackersnews.servlet.Login" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Login.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="133" width="286" x="5644" y="1186"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.hackersnews.servlet.Submitted" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Submitted.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="133" width="286" x="5970" y="1186"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="16" language="java" name="models" project="HackersNew" file="/HackersNew/src/models" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="48" width="100" x="6296" y="1186"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="17" language="java" name="models.CommentDao" project="HackersNew" 
+    file="/HackersNew/src/models/CommentDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6447" y="1403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.hackersnews.servlet.upvoted" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/upvoted.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7008" y="1004"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.hackersnews.servlet.Submit" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/Submit.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7346" y="960"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.hackersnews.servlet.ChangePassword" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/servlet/ChangePassword.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8106" y="1212"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="controllers.UserController" project="HackersNew" 
     file="/HackersNew/src/controllers/UserController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="187" x="2786" y="1886"/>    
+    <position height="-1" width="-1" x="7840" y="965"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="controllers.NoticeController" project="HackersNew" 
+  <class id="22" language="java" name="models.UserDao" project="HackersNew" file="/HackersNew/src/models/UserDao.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7657" y="1251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="controllers.NoticeController" project="HackersNew" 
     file="/HackersNew/src/controllers/NoticeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="241" width="278" x="3013" y="1886"/>    
+    <position height="-1" width="-1" x="8506" y="1285"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="12">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="13" name="parentComment">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="14" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <class id="24" language="java" name="models.Comment" project="HackersNew" file="/HackersNew/src/models/Comment.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7528" y="1976"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="26">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="27" name="user"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="15">    
-    <bendpoint x="4078" y="1260"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <generalization id="16">    
-    <bendpoint x="4146" y="1883"/>    
-    <bendpoint x="4146" y="1260"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="17">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="18" name="user">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="29">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="30" name="user"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="21" name="parentNotice">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="32">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="33" name="parentComment"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="36" name="parentNotice"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="23">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="24" name="user">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="38">    
+    <bendpoint x="6804" y="1575"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

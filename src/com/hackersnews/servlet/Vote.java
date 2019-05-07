@@ -1,8 +1,6 @@
 package com.hackersnews.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +28,9 @@ public class Vote extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		try {
 		User user = ((Session) request.getSession().getAttribute("sessionUser")).getUser();
+		
 		if (NoticeController.searchNotice(Integer.parseInt(request.getParameter("id"))) != null) {
 			Notice item = NoticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
 			if (request.getParameter("how").equals("up")) {
@@ -47,6 +47,10 @@ public class Vote extends HttpServlet {
 				CommentDao.removePoint(user, item);
 			}
 			response.sendRedirect(request.getContextPath() + "/item?id="+item.getParentNotice().getId());
+		}
+		}catch (Exception e) {
+			// TODO: handle exception
+			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 

@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.UserController;
-import models.Notice;
-import models.NoticeDao;
-import models.Session;
-import models.User;
+import com.hackersnews.controller.UserController;
+import com.hackersnews.dao.NoticeDao;
+import com.hackersnews.model.Notice;
+import com.hackersnews.model.Session;
+import com.hackersnews.model.User;
 
 /**
  * Servlet implementation class Submitted

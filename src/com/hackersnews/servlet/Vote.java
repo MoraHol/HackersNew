@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.CommentController;
-import controllers.NoticeController;
-import models.User;
-import models.Notice;
-import models.NoticeDao;
-import models.Session;
-import models.Comment;
-import models.CommentDao;
+import com.hackersnews.controller.CommentController;
+import com.hackersnews.controller.NoticeController;
+import com.hackersnews.dao.CommentDao;
+import com.hackersnews.dao.NoticeDao;
+import com.hackersnews.model.Comment;
+import com.hackersnews.model.Notice;
+import com.hackersnews.model.Session;
+import com.hackersnews.model.User;
 
 /**
  * Servlet implementation class Vote

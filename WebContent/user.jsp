@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="models.Session"%>
+<%@ page import="com.hackersnews.model.Session"%>
 <%@ page import="java.util.Date"%>
 <%
 	Session sessionUser = (Session) session.getAttribute("sessionUser");

@@ -1,6 +1,6 @@
-package models;
+package com.hackersnews.model;
 
-import controllers.UserController;
+import com.hackersnews.controller.UserController;
 
 public class Session {
 	private User user;

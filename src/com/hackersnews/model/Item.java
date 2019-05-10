@@ -1,4 +1,4 @@
-package models;
+package com.hackersnews.model;
 
 import java.util.Date;
 

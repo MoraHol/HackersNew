@@ -1,12 +1,12 @@
 <%@page import="jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="models.Session"%>
-<%@ page import="models.Notice"%>
+<%@ page import="com.hackersnews.model.Session"%>
+<%@ page import="com.hackersnews.model.Notice"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="controllers.NoticeController"%>
-<%@ page import="models.NoticeDao"%>
-<%@ page import="models.CommentDao"%>
+<%@ page import="com.hackersnews.controller.NoticeController"%>
+<%@ page import="com.hackersnews.dao.NoticeDao"%>
+<%@ page import="com.hackersnews.dao.CommentDao"%>
 <%@ page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
 <html>

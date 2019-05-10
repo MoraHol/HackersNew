@@ -1,4 +1,4 @@
-package models;
+package com.hackersnews.model;
 
 public class Comment extends Item {
 	private String text;

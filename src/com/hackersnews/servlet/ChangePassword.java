@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Session;
-import models.UserDao;
+import com.hackersnews.dao.UserDao;
+import com.hackersnews.model.Session;
 
 /**
  * Servlet implementation class ChangePassword

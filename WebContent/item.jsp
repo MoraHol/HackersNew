@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="models.Session"%>
-<%@ page import="models.Notice"%>
-<%@ page import="controllers.NoticeController"%>
-<%@ page import="models.CommentDao"%>
-<%@ page import="models.Comment"%>
+<%@ page import="com.hackersnews.model.Session"%>
+<%@ page import="com.hackersnews.model.Notice"%>
+<%@ page import="com.hackersnews.controller.NoticeController"%>
+<%@ page import="com.hackersnews.dao.CommentDao"%>
+<%@ page import="com.hackersnews.model.Comment"%>
 <%@ page import="java.net.URLEncoder"%>
-<%@ page import="models.NoticeDao"%>
+<%@ page import="com.hackersnews.dao.NoticeDao"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,6 @@
 		if (notice != null) {
 			Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
 	%>
-
 
 <html op="item">
 <head>
@@ -223,8 +222,8 @@
 				</tbody>
 			</table>
 			</center>
-			<script type="text/javascript" src="hn.js"></script><
-/body>
+			<script type="text/javascript" src="hn.js"></script>
+			< /body>
 </html>
 <%
 	} else {

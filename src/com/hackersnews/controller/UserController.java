@@ -1,11 +1,11 @@
-package controllers;
+package com.hackersnews.controller;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-import models.User;
-import models.UserDao;
+import com.hackersnews.dao.UserDao;
+import com.hackersnews.model.User;
 
 public class UserController {
 	public static ArrayList<User> getUsers() {

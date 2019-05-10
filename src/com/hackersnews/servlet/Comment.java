@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.CommentController;
-import controllers.NoticeController;
-import models.Notice;
-import models.Session;
-import models.User;
+import com.hackersnews.controller.CommentController;
+import com.hackersnews.controller.NoticeController;
+import com.hackersnews.model.Notice;
+import com.hackersnews.model.Session;
+import com.hackersnews.model.User;
 
 /**
  * Servlet implementation class Comment

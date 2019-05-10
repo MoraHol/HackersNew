@@ -1,12 +1,12 @@
-package controllers;
+package com.hackersnews.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import models.Notice;
-import models.NoticeDao;
-import models.User;
+import com.hackersnews.dao.NoticeDao;
+import com.hackersnews.model.Notice;
+import com.hackersnews.model.User;
 
 public class NoticeController {
 

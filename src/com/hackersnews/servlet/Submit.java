@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.NoticeController;
-import models.Session;
+import com.hackersnews.controller.NoticeController;
+import com.hackersnews.model.Session;
 
 /**
  * Servlet implementation class Submit

@@ -1,4 +1,4 @@
-package models;
+package com.hackersnews.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

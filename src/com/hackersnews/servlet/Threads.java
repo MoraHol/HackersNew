@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.UserController;
-import models.Session;
-import models.User;
-import models.Comment;
-import models.CommentDao;
+import com.hackersnews.controller.UserController;
+import com.hackersnews.dao.CommentDao;
+import com.hackersnews.model.Comment;
+import com.hackersnews.model.Session;
+import com.hackersnews.model.User;
 
 /**
  * Servlet implementation class Threads

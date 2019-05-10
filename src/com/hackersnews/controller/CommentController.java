@@ -1,11 +1,11 @@
-package controllers;
+package com.hackersnews.controller;
 
 import java.util.ArrayList;
 
-import models.Comment;
-import models.CommentDao;
-import models.Notice;
-import models.User;
+import com.hackersnews.dao.CommentDao;
+import com.hackersnews.model.Comment;
+import com.hackersnews.model.Notice;
+import com.hackersnews.model.User;
 
 public class CommentController {
 	public static boolean newComment(User user, Notice notice, Comment parent, String text) {

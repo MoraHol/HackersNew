@@ -42,7 +42,7 @@ public class UserDaoImpl extends ConnectionSQL implements IUserDao{
 		}
 		return status;
 	}
-
+	@Override
 	public User findUserById(int id) throws Exception {
 		User user = new User();
 		try {
@@ -67,7 +67,7 @@ public class UserDaoImpl extends ConnectionSQL implements IUserDao{
 		}
 		return user;
 	}
-
+	@Override
 	public User findUserByUserName(String userName) throws Exception {
 		User user = new User();
 		try {
@@ -92,7 +92,7 @@ public class UserDaoImpl extends ConnectionSQL implements IUserDao{
 		}
 		return user;
 	}
-	
+	@Override
 	public ArrayList<User> findAll() throws Exception {
 		ArrayList<User> list = new ArrayList<User>();
 		try {
@@ -112,7 +112,7 @@ public class UserDaoImpl extends ConnectionSQL implements IUserDao{
 		}
 		return list;
 	}
-
+	@Override
 	public int update(User user) throws Exception {
 		int status = 0;
 		try {

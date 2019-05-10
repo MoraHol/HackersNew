@@ -7,10 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.hackersnews.idao.INoticeDao;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
 
-public class NoticeDaoImpl {
+public class NoticeDaoImpl extends ConnectionSQL implements INoticeDao {
 
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		// Initialize all the information regarding

@@ -1,6 +1,6 @@
 package com.hackersnews.idao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
@@ -18,9 +18,9 @@ public interface INoticeDao {
 
 	public Notice findNoticeById(int id)throws Exception;
 
-	public List<Notice> findNoticesByUser(User user)throws Exception;
+	public ArrayList<Notice> findNoticesByUser(User user)throws Exception;
 
-	public List<Notice> findAllNotices()throws Exception;
+	public ArrayList<Notice> findAllNotices()throws Exception;
 
 	public int findPointByNotice(Notice notice)throws Exception;
 
@@ -28,5 +28,5 @@ public interface INoticeDao {
 
 	public int removePoint(User user, Notice notice);
 
-	public List<Notice> findNoticesRatedByUser(User user);
+	public ArrayList<Notice> findNoticesRatedByUser(User user);
 }

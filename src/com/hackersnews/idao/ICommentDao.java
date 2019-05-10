@@ -1,9 +1,8 @@
 package com.hackersnews.idao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.hackersnews.model.Comment;
-import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
 
 /**
@@ -17,17 +16,17 @@ public interface ICommentDao {
 
 	public int delete(int id) throws Exception;
 
-	public List<Comment> findCommentsByUser(User user) throws Exception;
+	public ArrayList<Comment> findCommentsByUser(User user) throws Exception;
 
-	public Comment CommentById(int id) throws Exception;
-
-	public List<Comment> findCommentsByNotice(Notice notice) throws Exception;
+	public Comment findCommentById(int id) throws Exception;
 
 	public int findPointsByComment(Comment comment) throws Exception;
 
 	public int rateComment(User user, Comment comment) throws Exception;
 
-	public List<Comment> findCommentsRatedByUser(User user) throws Exception;
+	public ArrayList<Comment> findCommentsRatedByUser(User user) throws Exception;
 
 	public int removePoint(User user, Comment comment) throws Exception;
+
+	public ArrayList<Comment> findCommentsByNotice(int noticeId) throws Exception;
 }

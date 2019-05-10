@@ -37,7 +37,7 @@ public class ConnectionSQL {
 		}
 	}
 
-	public void disconect() throws SQLException {
+	public void disconnect() throws SQLException {
 		if (jdbcConnection != null && !jdbcConnection.isClosed()) {
 			jdbcConnection.close();
 		}

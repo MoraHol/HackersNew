@@ -18,7 +18,7 @@ public class CommentDaoImpl extends Conexion implements ICommentDao{
 	public int save(Comment comment) throws SQLException {
 		int status = 0;
 		try {
-			this.con
+			this.connect();
 			PreparedStatement ps = con
 					.prepareStatement("INSERT INTO comments(text, user_id, parent_id, notice_id) values (?,?,?,?)");
 			ps.setString(1, comment.getText());

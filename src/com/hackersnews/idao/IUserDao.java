@@ -3,7 +3,7 @@
  */
 package com.hackersnews.idao;
 
-import java.util.List;
+import java.util.ArrayList;
 import com.hackersnews.model.User;
 
 /**
@@ -11,10 +11,16 @@ import com.hackersnews.model.User;
  *
  */
 public interface IUserDao {
-	public int save(User user);
-	public int update(User user);
-	public int delete(int id);
-	public User findUserById(int id);
-	public List<User> findAll();
-	
+	public int save(User user) throws Exception;
+
+	public int update(User user) throws Exception;
+
+	public int delete(int id) throws Exception;
+
+	public User findUserById(int id) throws Exception;
+
+	public ArrayList<User> findAll() throws Exception;
+
+	public User findUserByUserName(String username) throws Exception;
+
 }

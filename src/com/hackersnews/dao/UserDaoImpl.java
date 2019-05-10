@@ -1,64 +1,53 @@
 package com.hackersnews.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.hackersnews.idao.IUserDao;
 import com.hackersnews.model.User;
 
-public class UserDaoImpl {
-
-	public static Connection getConnection() throws SQLException, ClassNotFoundException {
-		// Initialize all the information regarding
-		// Database Connection
-		String dbDriver = "com.mysql.jdbc.Driver";
-		String dbURL = "jdbc:mysql://localhost:3306/";
-		// Database name to access
-		String dbName = "hackersnews";
-		String dbUsername = "root";
-		String dbPassword = "";
-		Class.forName(dbDriver);
-		return DriverManager.getConnection(dbURL + dbName, dbUsername, dbPassword);
-	}
-
-	public static int save(User user) {
+public class UserDaoImpl extends ConnectionSQL implements IUserDao{
+	@Override
+	public int save(User user) throws Exception {
 		int status = 0;
 		try {
-			Connection con = UserDaoImpl.getConnection();
-			PreparedStatement ps = con
+			this.connect();
+			PreparedStatement ps = this.getJdbcConnection()
 					.prepareStatement("INSERT INTO users (user_name, password, email) values (?,?,?)");
 			ps.setString(1, user.getUserName());
 			ps.setString(2, user.getPassword());
 			ps.setString(3, user.getEmail());
 			status = ps.executeUpdate();
-			con.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			this.disconnect();
+		} catch (Exception e) {
+            System.out.println(" UserDaoImpl: " + e.getMessage());
+            throw e;
+
 		}
 		return status;
 	}
-
-	public static int delete(int id) {
+	@Override
+	public int delete(int id) throws Exception {
 		int status = 0;
 		try {
-			Connection con = UserDaoImpl.getConnection();
-			PreparedStatement ps = con.prepareStatement("DELETE FROM users WHERE users.id = ?");
+			this.connect();
+			PreparedStatement ps = this.getJdbcConnection().prepareStatement("DELETE FROM users WHERE users.id = ?");
 			ps.setInt(1, id);
 			status = ps.executeUpdate();
-			con.close();
+			this.disconnect();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(" UserDaoImpl: " + e.getMessage());
+            throw e;
 		}
 		return status;
 	}
 
-	public static User getUserById(int id,  Connection con) {
+	public User findUserById(int id) throws Exception {
 		User user = new User();
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE users.id = ?");
+			this.connect();
+			PreparedStatement ps = this.getJdbcConnection().prepareStatement("SELECT * FROM users WHERE users.id = ?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -71,17 +60,19 @@ public class UserDaoImpl {
 			}
 			ps.close();
 			rs.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			this.disconnect();
+		} catch (Exception e) {
+			System.out.println(" UserDaoImpl: " + e.getMessage());
+            throw e;
 		}
 		return user;
 	}
 
-	public static User getUserByUserName(String userName) {
+	public User findUserByUserName(String userName) throws Exception {
 		User user = new User();
 		try {
-			Connection con = UserDaoImpl.getConnection();
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE users.user_name = ?");
+			this.connect();
+			PreparedStatement ps = this.getJdbcConnection().prepareStatement("SELECT * FROM users WHERE users.user_name = ?");
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -94,60 +85,39 @@ public class UserDaoImpl {
 			}
 			ps.close();
 			rs.close();
-			con.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return user;
-	}
-
-	public static User getUserByUserName(String userName, Connection con) {
-		User user = new User();
-		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE users.user_name = ?");
-			ps.setString(1, userName);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				user.setId(rs.getInt(1));
-				user.setUserName(rs.getString(2));
-				user.setPassword(rs.getString(3));
-				user.setEmail(rs.getString(4));
-				user.setKarma(rs.getInt(4));
-				user.setCreatedAt(rs.getDate("created_at"));
-			}
-			ps.close();
-			rs.close();
-			con.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			this.disconnect();
+		} catch (Exception e) {
+			System.out.println(" UserDaoImpl: " + e.getMessage());
+            throw e;
 		}
 		return user;
 	}
 	
-	public static ArrayList<User> getAllUsers() {
+	public ArrayList<User> findAll() throws Exception {
 		ArrayList<User> list = new ArrayList<User>();
 		try {
-			Connection con = UserDaoImpl.getConnection();
-			PreparedStatement ps = con.prepareStatement("select * from users");
+			this.connect();
+			PreparedStatement ps = this.getJdbcConnection().prepareStatement("select * from users");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				User user = getUserByUserName(rs.getString("user_name"),con);
+				User user = findUserByUserName(rs.getString("user_name"));
 				list.add(user);
 			}
 			ps.close();
 			rs.close();
-			con.close();
+			this.disconnect();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(" UserDaoImpl: " + e.getMessage());
+            throw e;
 		}
 		return list;
 	}
 
-	public static int update(User user) {
+	public int update(User user) throws Exception {
 		int status = 0;
 		try {
-			Connection con = UserDaoImpl.getConnection();
-			PreparedStatement ps = con.prepareStatement(
+			this.connect();
+			PreparedStatement ps = this.getJdbcConnection().prepareStatement(
 					"UPDATE `users` SET `user_name` = ?, `password` = ?, `email` = ?, `karma` = ? WHERE `users`.`id` = ?");
 			ps.setString(1, user.getUserName());
 			ps.setString(2, user.getPassword());
@@ -156,9 +126,10 @@ public class UserDaoImpl {
 			ps.setInt(5, user.getId());
 			status = ps.executeUpdate();
 			ps.close();
-			con.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			this.disconnect();
+		} catch (Exception e) {
+			System.out.println(" UserDaoImpl: " + e.getMessage());
+            throw e;
 		}
 		return status;
 	}

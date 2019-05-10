@@ -22,9 +22,9 @@ public interface INoticeDao {
 
 	public ArrayList<Notice> findAllNotices()throws Exception;
 
-	public int findPointByNotice(Notice notice)throws Exception;
+	public int findPointsByNotice(Notice notice)throws Exception;
 
-	public int rateNotice(Notice notice);
+	public int rateNotice(User user,Notice notice);
 
 	public int removePoint(User user, Notice notice);
 

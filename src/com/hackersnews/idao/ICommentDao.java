@@ -5,7 +5,10 @@ import java.util.List;
 import com.hackersnews.model.Comment;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
-
+/**
+ * @author Alexis Holguin github:MoraHol
+ *
+ */
 public interface ICommentDao {
 	public int save(Comment comment);
 	public int update(Comment comment);

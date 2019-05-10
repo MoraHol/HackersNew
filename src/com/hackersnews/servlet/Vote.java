@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hackersnews.controller.CommentController;
 import com.hackersnews.controller.NoticeController;
-import com.hackersnews.dao.CommentDao;
-import com.hackersnews.dao.NoticeDao;
+import com.hackersnews.dao.CommentDaoImpl;
+import com.hackersnews.dao.NoticeDaoImpl;
 import com.hackersnews.model.Comment;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.Session;
@@ -34,17 +34,17 @@ public class Vote extends HttpServlet {
 		if (NoticeController.searchNotice(Integer.parseInt(request.getParameter("id"))) != null) {
 			Notice item = NoticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
 			if (request.getParameter("how").equals("up")) {
-				NoticeDao.rateNotice(user, item);
+				NoticeDaoImpl.rateNotice(user, item);
 			} else {
-				NoticeDao.removePoint(user, item);
+				NoticeDaoImpl.removePoint(user, item);
 			}
 			response.sendRedirect(request.getContextPath() + "/newest");
 		} else if (CommentController.searchComment(Integer.parseInt(request.getParameter("id"))) != null) {
 			Comment item = CommentController.searchComment(Integer.parseInt(request.getParameter("id")));
 			if (request.getParameter("how").equals("up")) {
-				CommentDao.rateComment(user, item);
+				CommentDaoImpl.rateComment(user, item);
 			} else {
-				CommentDao.removePoint(user, item);
+				CommentDaoImpl.removePoint(user, item);
 			}
 			response.sendRedirect(request.getContextPath() + "/item?id="+item.getParentNotice().getId());
 		}

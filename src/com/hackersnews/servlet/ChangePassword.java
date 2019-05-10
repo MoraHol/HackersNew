@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hackersnews.dao.UserDao;
+import com.hackersnews.dao.UserDaoImpl;
 import com.hackersnews.model.Session;
 
 /**
@@ -64,7 +64,7 @@ public class ChangePassword extends HttpServlet {
 		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
 		if (oldPassword.equals(sessionUser.getUser().getPassword())) {
 			sessionUser.getUser().setPassword(password);
-			UserDao.update(sessionUser.getUser());
+			UserDaoImpl.update(sessionUser.getUser());
 			response.sendRedirect(request.getContextPath() + "/newest");
 		} else {
 			response.sendRedirect(request.getContextPath() + "/changepw?wrongpw=t");

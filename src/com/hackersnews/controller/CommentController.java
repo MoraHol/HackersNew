@@ -2,7 +2,7 @@ package com.hackersnews.controller;
 
 import java.util.ArrayList;
 
-import com.hackersnews.dao.CommentDao;
+import com.hackersnews.dao.CommentDaoImpl;
 import com.hackersnews.model.Comment;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
@@ -11,7 +11,7 @@ public class CommentController {
 	public static boolean newComment(User user, Notice notice, Comment parent, String text) {
 		try {
 			Comment comment = new Comment(user, text, notice, parent);
-			CommentDao.save(comment);
+			CommentDaoImpl.save(comment);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -20,12 +20,12 @@ public class CommentController {
 	}
 
 	public static Comment searchComment(int id){
-		return CommentDao.getCommentById(id);
+		return CommentDaoImpl.getCommentById(id);
 	}
 
 	public boolean editComment(Comment comment, String text) {
 		comment.setText(text);
-		CommentDao.update(comment);
+		CommentDaoImpl.update(comment);
 		return false;
 	}
 

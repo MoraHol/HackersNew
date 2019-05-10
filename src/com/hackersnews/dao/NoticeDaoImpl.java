@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
 
-public class NoticeDao {
+public class NoticeDaoImpl {
 
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		// Initialize all the information regarding
@@ -28,12 +28,12 @@ public class NoticeDao {
 	public static Notice getNoticeById(int id) throws SQLException {
 		Notice notice = null;
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM `notices` WHERE notices.id = ?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				notice = new Notice(UserDao.getUserById(rs.getInt("user_id"), con), rs.getInt("id"),
+				notice = new Notice(UserDaoImpl.getUserById(rs.getInt("user_id"), con), rs.getInt("id"),
 						rs.getString("title"), rs.getString("url"), rs.getDate("created_at"));
 			}
 			con.close();
@@ -51,7 +51,7 @@ public class NoticeDao {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				notice = new Notice(UserDao.getUserById(rs.getInt("user_id"), con), rs.getInt("id"),
+				notice = new Notice(UserDaoImpl.getUserById(rs.getInt("user_id"), con), rs.getInt("id"),
 						rs.getString("title"), rs.getString("url"), rs.getDate("created_at"));
 			}
 			ps.close();
@@ -66,7 +66,7 @@ public class NoticeDao {
 	public static int save(Notice notice) {
 		int status = 0;
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con
 					.prepareStatement("INSERT INTO `notices` (`title`, `url`, `user_id`) VALUES (?, ?, ?)");
 			ps.setString(1, notice.getTitle());
@@ -84,7 +84,7 @@ public class NoticeDao {
 	public static int delete(int id) {
 		int status = 0;
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement("DELETE FROM notices WHERE notices.id = ?");
 			ps.setInt(1, id);
 			status = ps.executeUpdate();
@@ -99,7 +99,7 @@ public class NoticeDao {
 	public static ArrayList<Notice> getNoticesByUser(User user) {
 		ArrayList<Notice> notices = new ArrayList<Notice>();
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 					"SELECT notices.id,title,url,notices.created_at,type FROM `notices` INNER JOIN users ON user_id = users.id WHERE users.id = ?");
 			ps.setInt(1, user.getId());
@@ -136,7 +136,7 @@ public class NoticeDao {
 	public static int update(Notice notice) {
 		int status = 0;
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con
 					.prepareStatement("UPDATE `notices` SET `title` = ?, `url` = ? WHERE `notices`.`id` = ?");
 			ps.setString(1, notice.getTitle());
@@ -154,7 +154,7 @@ public class NoticeDao {
 	public static ArrayList<Notice> findAllNotices() {
 		ArrayList<Notice> notices = new ArrayList<Notice>();
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement("select * from notices");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -172,7 +172,7 @@ public class NoticeDao {
 	public static int findPointsByNotice(Notice notice) {
 		int points = 0;
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con
 					.prepareStatement("SELECT * FROM rating_users WHERE notice_id = ?");
 			ps.setInt(1, notice.getId());
@@ -192,7 +192,7 @@ public class NoticeDao {
 	public static int rateNotice(User user, Notice notice) {
 		int status = 0;
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con
 					.prepareStatement("INSERT INTO `rating_users` (`user_id`, `notice_id`) VALUES (?, ?)");
 			ps.setInt(1, user.getId());
@@ -208,7 +208,7 @@ public class NoticeDao {
 	public static int removePoint(User user, Notice notice) {
 		int status = 0;
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con
 					.prepareStatement("DELETE FROM `rating_users` WHERE `rating_comments`.`user_id` = ? AND `rating_comments`.`comment_id` = ?");
 			ps.setInt(1, user.getId());
@@ -224,7 +224,7 @@ public class NoticeDao {
 	public static ArrayList<Notice> NoticesRatedByUser(User user) {
 		ArrayList<Notice> notices = new ArrayList<Notice>();
 		try {
-			Connection con = NoticeDao.getConnection();
+			Connection con = NoticeDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 					"SELECT notices.id,notices.url,notices.title, notices.created_at FROM `rating_users` JOIN notices ON `notice_id` = notices.id WHERE rating_users.`user_id` = ?");
 			ps.setInt(1, user.getId());

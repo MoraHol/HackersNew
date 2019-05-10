@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import com.hackersnews.model.User;
 
-public class UserDao {
+public class UserDaoImpl {
 
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
 		// Initialize all the information regarding
@@ -27,7 +27,7 @@ public class UserDao {
 	public static int save(User user) {
 		int status = 0;
 		try {
-			Connection con = UserDao.getConnection();
+			Connection con = UserDaoImpl.getConnection();
 			PreparedStatement ps = con
 					.prepareStatement("INSERT INTO users (user_name, password, email) values (?,?,?)");
 			ps.setString(1, user.getUserName());
@@ -44,7 +44,7 @@ public class UserDao {
 	public static int delete(int id) {
 		int status = 0;
 		try {
-			Connection con = UserDao.getConnection();
+			Connection con = UserDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement("DELETE FROM users WHERE users.id = ?");
 			ps.setInt(1, id);
 			status = ps.executeUpdate();
@@ -80,7 +80,7 @@ public class UserDao {
 	public static User getUserByUserName(String userName) {
 		User user = new User();
 		try {
-			Connection con = UserDao.getConnection();
+			Connection con = UserDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE users.user_name = ?");
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
@@ -127,7 +127,7 @@ public class UserDao {
 	public static ArrayList<User> getAllUsers() {
 		ArrayList<User> list = new ArrayList<User>();
 		try {
-			Connection con = UserDao.getConnection();
+			Connection con = UserDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement("select * from users");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -146,7 +146,7 @@ public class UserDao {
 	public static int update(User user) {
 		int status = 0;
 		try {
-			Connection con = UserDao.getConnection();
+			Connection con = UserDaoImpl.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 					"UPDATE `users` SET `user_name` = ?, `password` = ?, `email` = ?, `karma` = ? WHERE `users`.`id` = ?");
 			ps.setString(1, user.getUserName());

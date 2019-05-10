@@ -3,10 +3,10 @@
 <%@ page import="com.hackersnews.model.Session"%>
 <%@ page import="com.hackersnews.model.Notice"%>
 <%@ page import="com.hackersnews.controller.NoticeController"%>
-<%@ page import="com.hackersnews.dao.CommentDao"%>
+<%@ page import="com.hackersnews.dao.CommentDaoImpl"%>
 <%@ page import="com.hackersnews.model.Comment"%>
 <%@ page import="java.net.URLEncoder"%>
-<%@ page import="com.hackersnews.dao.NoticeDao"%>
+<%@ page import="com.hackersnews.dao.NoticeDaoImpl"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,7 +106,7 @@
 								<tr>
 									<td colspan="2"></td>
 									<td class="subtext"><span class="score"
-										id="score_<%=notice.getId()%>"><%=NoticeDao.findPointsByNotice(notice)%>
+										id="score_<%=notice.getId()%>"><%=NoticeDaoImpl.findPointsByNotice(notice)%>
 											point</span> by <a
 										href="user?id=<%=notice.getUser().getUserName()%>"
 										class="hnuser"><%=notice.getUser().getUserName()%></a> <span
@@ -121,7 +121,7 @@
 										href="https://www.google.com/search?q=<%=URLEncoder.encode(notice.getTitle(), "utf-8")%>">web</a>
 										| <a
 										href="fave?id=<%=notice.getId()%>&amp;auth=e68835b51b5087a0775cfa3ef4287e2914dfaffb">favorite</a>
-										| <a href="item?id=<%=notice.getId()%>"><%=CommentDao.getCommentsByNotice(notice.getId()).size()%>&nbsp;comment</a>
+										| <a href="item?id=<%=notice.getId()%>"><%=CommentDaoImpl.getCommentsByNotice(notice.getId()).size()%>&nbsp;comment</a>
 									</td>
 								</tr>
 								<tr style="height: 10px"></tr>
@@ -141,7 +141,7 @@
 						<table border="0" class="comment-tree">
 							<tbody>
 								<%
-									for (Comment comment : CommentDao.getCommentsByNotice(notice.getId())) {
+									for (Comment comment : CommentDaoImpl.getCommentsByNotice(notice.getId())) {
 								%>
 								<tr class="athing comtr" id="<%=comment.getId()%>">
 									<td>

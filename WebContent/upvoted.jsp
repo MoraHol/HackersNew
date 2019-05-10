@@ -5,8 +5,8 @@
 <%@ page import="com.hackersnews.model.Notice"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.hackersnews.controller.NoticeController"%>
-<%@ page import="com.hackersnews.dao.NoticeDao"%>
-<%@ page import="com.hackersnews.dao.CommentDao"%>
+<%@ page import="com.hackersnews.dao.NoticeDaoImpl"%>
+<%@ page import="com.hackersnews.dao.CommentDaoImpl"%>
 <%@ page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
 <html>
@@ -75,7 +75,7 @@
 			<tr id="pagespace" title="New Links" style="height: 10px" />
 			<%
 				try {
-					ArrayList<Notice> noticeNewest = NoticeController.getNoticesNewest();
+							ArrayList<Notice> noticeNewest = NoticeController.getNoticesNewest();
 			%>
 			</tr>
 			<tr>
@@ -84,7 +84,7 @@
 						<tr class='athing' id="<%=noticeNewest.get(0).getId()%>">
 							<%
 								int counter = 1;
-									for (Notice notice : noticeNewest) {
+																			for (Notice notice : noticeNewest) {
 							%>
 							<td align="right" valign="top" class="title"><span
 								class="rank"><%=counter%> </span></td>
@@ -103,7 +103,7 @@
 						<tr>
 							<td colspan="2"></td>
 							<td class="subtext"><span class="score"
-								id="score_<%=notice.getId()%>"><%=NoticeDao.findPointsByNotice(notice)%>
+								id="score_<%=notice.getId()%>"><%=NoticeDaoImpl.findPointsByNotice(notice)%>
 									point</span> by <a href="user?id=<%=notice.getUser().getUserName()%>"
 								class="hnuser"><%=notice.getUser().getUserName()%></a> <span
 								class="age"><a href="item?id=<%=notice.getId()%>"> <%=notice.getAge()%></a></span>
@@ -114,13 +114,13 @@
 								href="https://www.google.com/search?q=
 						<%=URLEncoder.encode(notice.getTitle(), "utf-8")%>">web</a>
 								| <%
-									if (CommentDao.getCommentsByNotice(notice.getId()).size() == 0) {
+									if (CommentDaoImpl.getCommentsByNotice(notice.getId()).size() == 0) {
 								%> <a href="item?id=<%=notice.getId()%>">discuss</a></td>
 						</tr>
 						<%
 							} else {
 						%>
-						<a href="item?id=<%=notice.getId()%>"><%=CommentDao.getCommentsByNotice(notice.getId()).size()%>
+						<a href="item?id=<%=notice.getId()%>"><%=CommentDaoImpl.getCommentsByNotice(notice.getId()).size()%>
 							comments</a>
 						</td>
 						</tr>

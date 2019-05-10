@@ -105,8 +105,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="com.hackersnews.dao.NoticeDao" project="HackersNew" 
-    file="/HackersNew/src/com/hackersnews/dao/NoticeDao.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="13" language="java" name="com.hackersnews.dao.NoticeDaoImpl" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/dao/NoticeDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="313" width="285" x="5319" y="1186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -137,8 +137,8 @@
     <position height="48" width="100" x="6296" y="1186"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <class id="17" language="java" name="com.hackersnews.dao.CommentDao" project="HackersNew" 
-    file="/HackersNew/src/com/hackersnews/dao/CommentDao.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="com.hackersnews.dao.CommentDaoImpl" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/dao/CommentDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="6447" y="1403"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -182,8 +182,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="com.hackersnews.dao.UserDao" project="HackersNew" 
-    file="/HackersNew/src/com/hackersnews/dao/UserDao.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="22" language="java" name="com.hackersnews.dao.UserDaoImpl" project="HackersNew" 
+    file="/HackersNew/src/com/hackersnews/dao/UserDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="7657" y="1251"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

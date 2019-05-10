@@ -4,16 +4,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-import com.hackersnews.dao.UserDao;
+import com.hackersnews.dao.UserDaoImpl;
 import com.hackersnews.model.User;
 
 public class UserController {
 	public static ArrayList<User> getUsers() {
-		return UserDao.getAllUsers();
+		return UserDaoImpl.getAllUsers();
 	}
 
 	public static User validateUser(String username, String password) {
-		User user = UserDao.getUserByUserName(username);
+		User user = UserDaoImpl.getUserByUserName(username);
 		if (user.getUserName() != null) {
 			if (user.getUserName().equals(username) && user.getPassword().equals(convertSHA256(password))) {
 				return user;
@@ -27,7 +27,7 @@ public class UserController {
 	}
 
 	public static User searchUser(String username) {
-		User user = UserDao.getUserByUserName(username);
+		User user = UserDaoImpl.getUserByUserName(username);
 		if (user.getUserName().equals(username)) {
 			return user;
 		} else {
@@ -42,7 +42,7 @@ public class UserController {
 				return null;
 			} else {
 				user = new User(username, convertSHA256(password));
-				UserDao.save(user);
+				UserDaoImpl.save(user);
 				return user;
 			}
 		} catch (Exception e) {

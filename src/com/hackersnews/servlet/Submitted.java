@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hackersnews.controller.UserController;
-import com.hackersnews.dao.NoticeDao;
+import com.hackersnews.dao.NoticeDaoImpl;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.Session;
 import com.hackersnews.model.User;
@@ -74,7 +74,7 @@ public class Submitted extends HttpServlet {
 				+ "						class=\"itemlist\">");
 		// noticia
 		int count = 1;
-		for (Notice notice : NoticeDao.getNoticesByUser(user)) {
+		for (Notice notice : NoticeDaoImpl.getNoticesByUser(user)) {
 			out.println("<tr class='athing' id='" + notice.getId() + "'>\n"
 					+ "							<td align=\"right\" valign=\"top\" class=\"title\"><span\n"
 					+ "								class=\"rank\">" + count + ".</span></td>\n"
@@ -89,7 +89,7 @@ public class Submitted extends HttpServlet {
 					+ "</span></a>)</span></td>\n" + "						</tr>\n" + "						<tr>\n"
 					+ "							<td colspan=\"2\"></td>\n"
 					+ "							<td class=\"subtext\"><span class=\"score\" id=\"score_"
-					+ notice.getId() + "\">" + NoticeDao.findPointsByNotice(notice) + "\n"
+					+ notice.getId() + "\">" + NoticeDaoImpl.findPointsByNotice(notice) + "\n"
 					+ "									points</span> by <a href=\"user?id="
 					+ sessionUser.getUser().getUserName() + "\" class=\"hnuser\">" + sessionUser.getUser().getUserName()
 					+ "</a>\n" + "								<span class=\"age\"><a href=\"item?id=" + notice.getId()

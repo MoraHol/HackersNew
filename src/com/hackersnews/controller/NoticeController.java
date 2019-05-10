@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.hackersnews.dao.NoticeDao;
+import com.hackersnews.dao.NoticeDaoImpl;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
 
@@ -12,7 +12,7 @@ public class NoticeController {
 
 	public static Notice searchNotice(int id) {
 		try {
-			return NoticeDao.getNoticeById(id);
+			return NoticeDaoImpl.getNoticeById(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -23,7 +23,7 @@ public class NoticeController {
 	public static boolean createNotice(User user, String title, String url) {
 		try {
 			Notice notice = new Notice(user, title, url, new Date());
-			NoticeDao.save(notice);
+			NoticeDaoImpl.save(notice);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -33,7 +33,7 @@ public class NoticeController {
 
 	public static boolean deleteNotice(Notice notice) {
 		try {
-			NoticeDao.delete(notice.getId());
+			NoticeDaoImpl.delete(notice.getId());
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -44,7 +44,7 @@ public class NoticeController {
 	public static boolean editNotice(Notice notice, String title) {
 		try {
 			notice.setTitle(title);
-			NoticeDao.update(notice);
+			NoticeDaoImpl.update(notice);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -55,7 +55,7 @@ public class NoticeController {
 	public static ArrayList<Notice> getNoticesNewest() {
 		int numberNotices = 19;
 		ArrayList<Notice> noticesNewest = null;
-			noticesNewest = NoticeDao.findAllNotices();
+			noticesNewest = NoticeDaoImpl.findAllNotices();
 		
 		noticesNewest = quickSortDate(noticesNewest);
 		if (noticesNewest.size() > numberNotices) {
@@ -67,7 +67,7 @@ public class NoticeController {
 	}
 
 	public static ArrayList<Notice> getNoticesRanking() throws SQLException {
-		ArrayList<Notice> noticesRanking = NoticeDao.findAllNotices();
+		ArrayList<Notice> noticesRanking = NoticeDaoImpl.findAllNotices();
 		
 		noticesRanking = quickSortPoints(noticesRanking);
 		try {
@@ -142,7 +142,7 @@ public class NoticeController {
 			// tomar el primer elemento como pivote
 			Notice pivot = array.get(0);
 			for (int i = 1; i < array.size(); i++) {
-				if (NoticeDao.findPointsByNotice(array.get(i)) > NoticeDao.findPointsByNotice(pivot)) {
+				if (NoticeDaoImpl.findPointsByNotice(array.get(i)) > NoticeDaoImpl.findPointsByNotice(pivot)) {
 					less_subarray.add(array.get(i));
 				} else {
 					greater_subarray.add(array.get(i));

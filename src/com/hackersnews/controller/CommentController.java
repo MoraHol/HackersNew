@@ -3,15 +3,21 @@ package com.hackersnews.controller;
 import java.util.ArrayList;
 
 import com.hackersnews.dao.CommentDaoImpl;
+import com.hackersnews.idao.ICommentDao;
 import com.hackersnews.model.Comment;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
 
 public class CommentController {
-	public static boolean newComment(User user, Notice notice, Comment parent, String text) {
+	private ICommentDao commentDao;
+	
+	public CommentController() {
+		commentDao = new CommentDaoImpl();
+	}
+	public  boolean newComment(User user, Notice notice, Comment parent, String text) {
 		try {
 			Comment comment = new Comment(user, text, notice, parent);
-			CommentDaoImpl.save(comment);
+			commentDao.save(comment);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -19,13 +25,13 @@ public class CommentController {
 		}
 	}
 
-	public static Comment searchComment(int id){
-		return CommentDaoImpl.getCommentById(id);
+	public Comment searchComment(int id) throws Exception{
+		return commentDao.findCommentById(id);
 	}
 
-	public boolean editComment(Comment comment, String text) {
+	public boolean editComment(Comment comment, String text) throws Exception {
 		comment.setText(text);
-		CommentDaoImpl.update(comment);
+		commentDao.update(comment);
 		return false;
 	}
 
@@ -33,7 +39,7 @@ public class CommentController {
 		return false;
 	}
 
-	private static ArrayList<Comment> quickSortId(ArrayList<Comment> array) {
+	private  ArrayList<Comment> quickSortId(ArrayList<Comment> array) {
 		ArrayList<Comment> array1 = new ArrayList<Comment>();
 		ArrayList<Comment> less_subarray = new ArrayList<Comment>();
 		ArrayList<Comment> greater_subarray = new ArrayList<Comment>();
@@ -85,7 +91,7 @@ public class CommentController {
 		return array1;
 	}
 
-	private static Comment binarySearch(ArrayList<Comment> comments, int id) {
+	private  Comment binarySearch(ArrayList<Comment> comments, int id) {
 		int n = comments.size();
 		int centro, inf = 0, sup = n - 1;
 		while (inf <= sup) {

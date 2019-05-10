@@ -5,14 +5,19 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.hackersnews.dao.NoticeDaoImpl;
+import com.hackersnews.idao.INoticeDao;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.User;
 
 public class NoticeController {
-
-	public static Notice searchNotice(int id) {
+	private INoticeDao noticeDao;
+	
+	public NoticeController() {
+		noticeDao = new NoticeDaoImpl();
+	}
+	public  Notice searchNotice(int id) throws Exception {
 		try {
-			return NoticeDaoImpl.getNoticeById(id);
+			return noticeDao.findNoticeById(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -20,10 +25,10 @@ public class NoticeController {
 		}
 	}
 
-	public static boolean createNotice(User user, String title, String url) {
+	public  boolean createNotice(User user, String title, String url) {
 		try {
 			Notice notice = new Notice(user, title, url, new Date());
-			NoticeDaoImpl.save(notice);
+			noticeDao.save(notice);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -31,9 +36,9 @@ public class NoticeController {
 		}
 	}
 
-	public static boolean deleteNotice(Notice notice) {
+	public  boolean deleteNotice(Notice notice) {
 		try {
-			NoticeDaoImpl.delete(notice.getId());
+			noticeDao.delete(notice.getId());
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -41,10 +46,10 @@ public class NoticeController {
 		}
 	}
 
-	public static boolean editNotice(Notice notice, String title) {
+	public  boolean editNotice(Notice notice, String title) {
 		try {
 			notice.setTitle(title);
-			NoticeDaoImpl.update(notice);
+			noticeDao.update(notice);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -52,10 +57,10 @@ public class NoticeController {
 		}
 	}
 
-	public static ArrayList<Notice> getNoticesNewest() {
+	public  ArrayList<Notice> getNoticesNewest() throws Exception {
 		int numberNotices = 19;
 		ArrayList<Notice> noticesNewest = null;
-			noticesNewest = NoticeDaoImpl.findAllNotices();
+			noticesNewest = noticeDao.findAllNotices();
 		
 		noticesNewest = quickSortDate(noticesNewest);
 		if (noticesNewest.size() > numberNotices) {
@@ -66,10 +71,10 @@ public class NoticeController {
 		return (ArrayList<Notice>) noticesNewest;
 	}
 
-	public static ArrayList<Notice> getNoticesRanking() throws SQLException {
-		ArrayList<Notice> noticesRanking = NoticeDaoImpl.findAllNotices();
+	public  ArrayList<Notice> getNoticesRanking() throws Exception {
+		ArrayList<Notice> noticesRanking = noticeDao.findAllNotices();
 		
-		noticesRanking = quickSortPoints(noticesRanking);
+		noticesRanking = this.quickSortPoints(noticesRanking);
 		try {
 			noticesRanking = (ArrayList<Notice>) noticesRanking.subList(0, 19);
 		} catch (Exception e) {
@@ -78,7 +83,7 @@ public class NoticeController {
 		return noticesRanking;
 	}
 
-	private static ArrayList<Notice> quickSortDate(ArrayList<Notice> array) {
+	private  ArrayList<Notice> quickSortDate(ArrayList<Notice> array) {
 		ArrayList<Notice> array1 = new ArrayList<Notice>();
 		ArrayList<Notice> less_subarray = new ArrayList<Notice>();
 		ArrayList<Notice> greater_subarray = new ArrayList<Notice>();
@@ -130,7 +135,7 @@ public class NoticeController {
 		return array1;
 	}
 
-	private static ArrayList<Notice> quickSortPoints(ArrayList<Notice> array) {
+	private  ArrayList<Notice> quickSortPoints(ArrayList<Notice> array) throws Exception {
 		ArrayList<Notice> array1 = new ArrayList<Notice>();
 		ArrayList<Notice> less_subarray = new ArrayList<Notice>();
 		ArrayList<Notice> greater_subarray = new ArrayList<Notice>();
@@ -142,7 +147,7 @@ public class NoticeController {
 			// tomar el primer elemento como pivote
 			Notice pivot = array.get(0);
 			for (int i = 1; i < array.size(); i++) {
-				if (NoticeDaoImpl.findPointsByNotice(array.get(i)) > NoticeDaoImpl.findPointsByNotice(pivot)) {
+				if (noticeDao.findPointsByNotice(array.get(i)) > noticeDao.findPointsByNotice(pivot)) {
 					less_subarray.add(array.get(i));
 				} else {
 					greater_subarray.add(array.get(i));
@@ -182,7 +187,7 @@ public class NoticeController {
 		return array1;
 	}
 
-	private static ArrayList<Notice> quickSortId(ArrayList<Notice> array) {
+	private  ArrayList<Notice> quickSortId(ArrayList<Notice> array) {
 		ArrayList<Notice> array1 = new ArrayList<Notice>();
 		ArrayList<Notice> less_subarray = new ArrayList<Notice>();
 		ArrayList<Notice> greater_subarray = new ArrayList<Notice>();
@@ -234,7 +239,7 @@ public class NoticeController {
 		return array1;
 	}
 
-	private static Notice binarySearch(ArrayList<Notice> notices, int id) {
+	private  Notice binarySearch(ArrayList<Notice> notices, int id) {
 		int n = notices.size();
 		int centro, inf = 0, sup = n - 1;
 		while (inf <= sup) {

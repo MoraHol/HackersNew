@@ -4,7 +4,10 @@ import com.hackersnews.controller.UserController;
 
 public class Session {
 	private User user;
-
+	private UserController userConstroller;
+	public Session() {
+		userConstroller = new UserController();
+	}
 	public User getUser() {
 		return user;
 	}
@@ -21,8 +24,8 @@ public class Session {
 		}
 	}
 
-	public boolean login(String username, String password) {
-		User user = UserController.validateUser(username, password);
+	public boolean login(String username, String password) throws Exception {
+		User user = userConstroller.validateUser(username, password);
 		if (user != null) {
 			this.user = user;
 			return true;
@@ -31,15 +34,15 @@ public class Session {
 	}
 
 	public boolean createAccount(String username, String password) {
-		if (UserController.createAccount(username, password) != null) {
+		if (userConstroller.createAccount(username, password) != null) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public boolean verifyUser(String username) {
-		for (User user : UserController.getUsers()) {
+	public boolean verifyUser(String username) throws Exception {
+		for (User user : userConstroller.getUsers()) {
 			if (user.getUserName().equals(username)) {
 				return true;
 			}

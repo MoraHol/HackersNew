@@ -36,13 +36,15 @@ public class Comment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		NoticeController noticeController = new NoticeController();
+		CommentController commentController = new CommentController();
 		// TODO Auto-generated method stub
 		try {
-		Notice parentNotice = NoticeController.searchNotice(Integer.parseInt(request.getParameter("parent")));
+		Notice parentNotice = noticeController.searchNotice(Integer.parseInt(request.getParameter("parent")));
 		User user = ((Session) request.getSession().getAttribute("sessionUser")).getUser();
 		String text = request.getParameter("text");
 		if (!text.equals("")) {
-			CommentController.newComment(user, parentNotice, null, text);
+			commentController.newComment(user, parentNotice, null, text);
 		}
 		response.sendRedirect(request.getContextPath() + "/item?id=" + parentNotice.getId());
 		}catch (Exception e) {

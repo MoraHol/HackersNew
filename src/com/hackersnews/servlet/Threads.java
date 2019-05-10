@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hackersnews.controller.UserController;
 import com.hackersnews.dao.CommentDaoImpl;
+import com.hackersnews.idao.ICommentDao;
 import com.hackersnews.model.Comment;
 import com.hackersnews.model.Session;
 import com.hackersnews.model.User;
@@ -27,6 +28,8 @@ public class Threads extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		UserController userController = new UserController();
+		ICommentDao commentDao = new CommentDaoImpl();
 		PrintWriter out = response.getWriter();
 		// wirting head
 		out.println("<html op=\"threads\"><head><meta name=\"referrer\" content=\"origin\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"stylesheet\" type=\"text/css\" href=\"css/index.css\">\n" + 
@@ -58,8 +61,8 @@ public class Threads extends HttpServlet {
 		}
 		out.println("<tr id=\"pagespace\" title=\""+request.getParameter("id")+"&#x27;s comments\" style=\"height:10px\"></tr>");
 		try {
-			User user = UserController.searchUser(request.getParameter("id"));
-			for (Comment comment : CommentDaoImpl.getCommentsByUser(user)) {
+			User user = userController.searchUser(request.getParameter("id"));
+			for (Comment comment : commentDao.findCommentsByUser(user)) {
 				out.println("<tr class='athing comtr ' id='"+comment.getId()+"'><td>\n" + 
 						"            <table border='0'>  <tr>    <td class='ind'><img src=\"s.gif\" height=\"1\" width=\"0\"></td><td valign=\"top\" class=\"votelinks\"><center><a id='up_"+comment.getId()+"' href='vote?id="+comment.getId()+"&amp;how=up&amp;goto=threads%3Fid%3Dwgx'><div class='votearrow' title='upvote'></div></a></center></td><td class=\"default\"><div style=\"margin-top:2px; margin-bottom:-10px;\"><span class=\"comhead\">\n" + 
 						"          <a href=\"user?id="+comment.getUser().getUserName()+"\" class=\"hnuser\">"+comment.getUser().getUserName()+"</a> <span class=\"age\"><a href=\"item?id="+comment.getId()+"\">"+comment.getAge()+"</a></span> <span id=\"unv_"+comment.getId()+"\"></span><span class=\"par\"> | <a href=\"item?id="+comment.getId()+"\">parent</a></span> <a class=\"togg\" n=\"6\" href=\"javascript:void(0)\" onclick=\"return toggle(event, "+comment.getId()+")\"></a>          <span class='storyon'> | on: <a href=\"item?id="+comment.getParentNotice().getId()+"\">"+comment.getParentNotice().getTitle()+"</a></span>\n" + 

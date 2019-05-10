@@ -40,13 +40,14 @@ public class Submit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		NoticeController noticeController = new NoticeController();
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		String url = request.getParameter("url");
 		String title = request.getParameter("title");
 		// String text = request.getParameter("text");
 		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		NoticeController.createNotice(sessionUser.getUser(), title, url);
+		noticeController.createNotice(sessionUser.getUser(), title, url);
 		response.sendRedirect("newest");
 	}
 

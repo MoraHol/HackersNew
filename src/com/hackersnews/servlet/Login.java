@@ -38,6 +38,7 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		UserController userController = new UserController();
 		try {
 			String username = request.getParameter("acct");
 			String password = request.getParameter("pw");
@@ -66,10 +67,13 @@ public class Login extends HttpServlet {
 							+ "    <title>Page Title</title>\r\n"
 							+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n"
 							+ "</head>\r\n" + "<body>\r\n" + "    <h1>Inicio de sesion erroneo</h1>\r\n"
-							+ "    <h3>No esta registrado :(</h3>\r\n" + UserController.getUsers().toString()
+							+ "    <h3>No esta registrado :(</h3>\r\n" + userController.getUsers().toString()
 							+ "<a href='/HackersNew/login.jsp'>regresar</a>" + "</body>\r\n" + "</html>");
 				}
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			out.close();
 		}

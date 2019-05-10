@@ -11,6 +11,8 @@ import com.hackersnews.controller.CommentController;
 import com.hackersnews.controller.NoticeController;
 import com.hackersnews.dao.CommentDaoImpl;
 import com.hackersnews.dao.NoticeDaoImpl;
+import com.hackersnews.idao.ICommentDao;
+import com.hackersnews.idao.INoticeDao;
 import com.hackersnews.model.Comment;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.Session;
@@ -28,23 +30,27 @@ public class Vote extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		INoticeDao noticeDao = new NoticeDaoImpl();
+		NoticeController noticeController = new NoticeController();
+		CommentController commentController = new CommentController();
+		ICommentDao commentDao = new CommentDaoImpl();
 		try {
 		User user = ((Session) request.getSession().getAttribute("sessionUser")).getUser();
 		
-		if (NoticeController.searchNotice(Integer.parseInt(request.getParameter("id"))) != null) {
-			Notice item = NoticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
+		if (noticeController.searchNotice(Integer.parseInt(request.getParameter("id"))) != null) {
+			Notice item = noticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
 			if (request.getParameter("how").equals("up")) {
-				NoticeDaoImpl.rateNotice(user, item);
+				noticeDao.rateNotice(user, item);
 			} else {
-				NoticeDaoImpl.removePoint(user, item);
+				noticeDao.removePoint(user, item);
 			}
 			response.sendRedirect(request.getContextPath() + "/newest");
-		} else if (CommentController.searchComment(Integer.parseInt(request.getParameter("id"))) != null) {
-			Comment item = CommentController.searchComment(Integer.parseInt(request.getParameter("id")));
+		} else if (commentController.searchComment(Integer.parseInt(request.getParameter("id"))) != null) {
+			Comment item = commentController.searchComment(Integer.parseInt(request.getParameter("id")));
 			if (request.getParameter("how").equals("up")) {
-				CommentDaoImpl.rateComment(user, item);
+				commentDao.rateComment(user, item);
 			} else {
-				CommentDaoImpl.removePoint(user, item);
+				commentDao.removePoint(user, item);
 			}
 			response.sendRedirect(request.getContextPath() + "/item?id="+item.getParentNotice().getId());
 		}

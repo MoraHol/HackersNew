@@ -18,11 +18,11 @@ public interface INoticeDao {
 
 	public Notice findNoticeById(int id)throws Exception;
 
-	public ArrayList<Notice> findNoticesByUser(User user)throws Exception;
+	public ArrayList<Notice> findNoticesByUser(User user);
 
 	public ArrayList<Notice> findAllNotices()throws Exception;
 
-	public int findPointsByNotice(Notice notice)throws Exception;
+	public int findPointsByNotice(Notice notice);
 
 	public int rateNotice(User user,Notice notice);
 

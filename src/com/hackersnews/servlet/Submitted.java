@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hackersnews.controller.UserController;
 import com.hackersnews.dao.NoticeDaoImpl;
+import com.hackersnews.idao.INoticeDao;
 import com.hackersnews.model.Notice;
 import com.hackersnews.model.Session;
 import com.hackersnews.model.User;
@@ -30,8 +31,10 @@ public class Submitted extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		UserController userController = new UserController();
 		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		User user = UserController.searchUser(request.getParameter("id"));
+		User user = userController.searchUser(request.getParameter("id"));
+		INoticeDao noticeDao = new NoticeDaoImpl();
 		PrintWriter out = response.getWriter();
 		// writing head
 		out.println("<!DOCTYPE html>\n" + "<html op=\"submitted\">\n" + "<head>\n"
@@ -74,7 +77,7 @@ public class Submitted extends HttpServlet {
 				+ "						class=\"itemlist\">");
 		// noticia
 		int count = 1;
-		for (Notice notice : NoticeDaoImpl.getNoticesByUser(user)) {
+		for (Notice notice : noticeDao.findNoticesByUser(user)) {
 			out.println("<tr class='athing' id='" + notice.getId() + "'>\n"
 					+ "							<td align=\"right\" valign=\"top\" class=\"title\"><span\n"
 					+ "								class=\"rank\">" + count + ".</span></td>\n"
@@ -89,7 +92,7 @@ public class Submitted extends HttpServlet {
 					+ "</span></a>)</span></td>\n" + "						</tr>\n" + "						<tr>\n"
 					+ "							<td colspan=\"2\"></td>\n"
 					+ "							<td class=\"subtext\"><span class=\"score\" id=\"score_"
-					+ notice.getId() + "\">" + NoticeDaoImpl.findPointsByNotice(notice) + "\n"
+					+ notice.getId() + "\">" + noticeDao.findPointsByNotice(notice) + "\n"
 					+ "									points</span> by <a href=\"user?id="
 					+ sessionUser.getUser().getUserName() + "\" class=\"hnuser\">" + sessionUser.getUser().getUserName()
 					+ "</a>\n" + "								<span class=\"age\"><a href=\"item?id=" + notice.getId()

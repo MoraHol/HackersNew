@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hackersnews.dao.UserDaoImpl;
+import com.hackersnews.idao.IUserDao;
 import com.hackersnews.model.Session;
 
 /**
@@ -58,16 +59,24 @@ public class ChangePassword extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String oldPassword = request.getParameter("oldpw");
-		String password = request.getParameter("pw");
-		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
-		if (oldPassword.equals(sessionUser.getUser().getPassword())) {
-			sessionUser.getUser().setPassword(password);
-			UserDaoImpl.update(sessionUser.getUser());
-			response.sendRedirect(request.getContextPath() + "/newest");
-		} else {
-			response.sendRedirect(request.getContextPath() + "/changepw?wrongpw=t");
+		IUserDao userDao = new UserDaoImpl();
+		try {
+			// TODO Auto-generated method stub
+			String oldPassword = request.getParameter("oldpw");
+			String password = request.getParameter("pw");
+			Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
+			if (oldPassword.equals(sessionUser.getUser().getPassword())) {
+				sessionUser.getUser().setPassword(password);
+
+				userDao.update(sessionUser.getUser());
+
+				response.sendRedirect(request.getContextPath() + "/newest");
+			} else {
+				response.sendRedirect(request.getContextPath() + "/changepw?wrongpw=t");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

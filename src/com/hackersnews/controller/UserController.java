@@ -33,13 +33,15 @@ public class UserController {
 
 	}
 
-	public User searchUser(String username) throws Exception {
-		User user = userDao.findUserByUserName(username);
-		if (user.getUserName().equals(username)) {
-			return user;
-		} else {
-			return null;
+	public User searchUser(String username) {
+		try {
+			User user = userDao.findUserByUserName(username);
+			if (user.getUserName().equals(username)) {
+				return user;
+			}
+		} catch (Exception e) {
 		}
+		return null;
 	}
 
 	public User createAccount(String username, String password) {

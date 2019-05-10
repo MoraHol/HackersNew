@@ -26,9 +26,10 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		UserController userController = new UserController();
 		Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
 		PrintWriter out = response.getWriter();
-		User user = UserController.searchUser(request.getParameter("id"));
+		User user = userController.searchUser(request.getParameter("id"));
 		if (sessionUser != null) {
 			if (request.getParameter("id")
 					.equals(((Session) request.getSession().getAttribute("sessionUser")).getUser().getUserName())) {

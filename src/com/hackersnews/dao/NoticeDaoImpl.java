@@ -28,7 +28,6 @@ public class NoticeDaoImpl extends ConnectionSQL implements INoticeDao {
 				notice = new Notice(userDao.findUserById(rs.getInt("user_id")), rs.getInt("id"),
 						rs.getString("title"), rs.getString("url"), rs.getDate("created_at"));
 			}
-			this.disconnect();
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("NoticeDaoImpl: " + e.getMessage());
@@ -107,7 +106,7 @@ public class NoticeDaoImpl extends ConnectionSQL implements INoticeDao {
 		return status;
 	}
 
-	public  ArrayList<Notice> findAllNotices() {
+	public  ArrayList<Notice> findAllNotices() throws SQLException {
 		ArrayList<Notice> notices = new ArrayList<Notice>();
 		try {
 			this.connect();
@@ -117,11 +116,11 @@ public class NoticeDaoImpl extends ConnectionSQL implements INoticeDao {
 				Notice notice = findNoticeById(rs.getInt("id"));
 				notices.add(notice);
 			}
-			ps.close();
-			rs.close();
-			this.disconnect();
+			
 		} catch (Exception e) {
 			System.out.println("NoticeDaoImpl: " + e.getMessage());
+		}finally {
+			this.disconnect();
 		}
 		return notices;
 	}

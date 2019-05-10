@@ -85,7 +85,6 @@ public class UserDaoImpl extends ConnectionSQL implements IUserDao{
 			}
 			ps.close();
 			rs.close();
-			this.disconnect();
 		} catch (Exception e) {
 			System.out.println(" UserDaoImpl: " + e.getMessage());
             throw e;

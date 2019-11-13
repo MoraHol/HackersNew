@@ -4,6 +4,8 @@
 <%@ page import="com.hackersnews.model.Notice"%>
 <%@ page import="com.hackersnews.controller.NoticeController"%>
 <%@ page import="com.hackersnews.dao.CommentDaoImpl"%>
+<%@ page import="com.hackersnews.idao.ICommentDao"%>
+<%@ page import="com.hackersnews.idao.INoticeDao"%>
 <%@ page import="com.hackersnews.model.Comment"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="com.hackersnews.dao.NoticeDaoImpl"%>
@@ -15,7 +17,10 @@
 </head>
 <body>
 	<%
-		Notice notice = NoticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
+		NoticeController noticeController = new NoticeController();
+		INoticeDao noticeDao = new NoticeDaoImpl();
+		ICommentDao commentDao = new CommentDaoImpl();
+		Notice notice = noticeController.searchNotice(Integer.parseInt(request.getParameter("id")));
 		if (notice != null) {
 			Session sessionUser = (Session) request.getSession().getAttribute("sessionUser");
 	%>
@@ -106,7 +111,7 @@
 								<tr>
 									<td colspan="2"></td>
 									<td class="subtext"><span class="score"
-										id="score_<%=notice.getId()%>"><%=NoticeDaoImpl.findPointsByNotice(notice)%>
+										id="score_<%=notice.getId()%>"><%=noticeDao.findPointsByNotice(notice)%>
 											point</span> by <a
 										href="user?id=<%=notice.getUser().getUserName()%>"
 										class="hnuser"><%=notice.getUser().getUserName()%></a> <span
@@ -121,7 +126,7 @@
 										href="https://www.google.com/search?q=<%=URLEncoder.encode(notice.getTitle(), "utf-8")%>">web</a>
 										| <a
 										href="fave?id=<%=notice.getId()%>&amp;auth=e68835b51b5087a0775cfa3ef4287e2914dfaffb">favorite</a>
-										| <a href="item?id=<%=notice.getId()%>"><%=CommentDaoImpl.getCommentsByNotice(notice.getId()).size()%>&nbsp;comment</a>
+										| <a href="item?id=<%=notice.getId()%>"><%=commentDao.findCommentsByNotice(notice.getId()).size()%>&nbsp;comment</a>
 									</td>
 								</tr>
 								<tr style="height: 10px"></tr>
@@ -141,7 +146,7 @@
 						<table border="0" class="comment-tree">
 							<tbody>
 								<%
-									for (Comment comment : CommentDaoImpl.getCommentsByNotice(notice.getId())) {
+									for (Comment comment : commentDao.findCommentsByNotice(notice.getId())) {
 								%>
 								<tr class="athing comtr" id="<%=comment.getId()%>">
 									<td>
@@ -158,7 +163,7 @@
 															style="margin-top: 2px; margin-bottom: -10px;">
 															<span class="comhead"> <a
 																href="user?id=<%=comment.getUser().getUserName()%>"
-																class="hnuser">"<%=comment.getUser().getUserName()%></a>
+																class="hnuser"><%=comment.getUser().getUserName()%></a>
 																<span class="age"><a
 																	href="item?id=<%=comment.getId()%>"><%=comment.getAge()%></a></span>
 																<span id="unv_<%=comment.getId()%>"></span><span
@@ -223,7 +228,7 @@
 			</table>
 			</center>
 			<script type="text/javascript" src="hn.js"></script>
-			< /body>
+			</body>
 </html>
 <%
 	} else {

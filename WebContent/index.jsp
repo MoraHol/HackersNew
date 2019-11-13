@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%session.setAttribute("sessionUser", null); %>
+
 <!DOCTYPE html>
 <html op="news">
 <head>
@@ -11,6 +11,7 @@
 <title>Hacker News</title>
 </head>
 <body>
-	<%@include file="news.jsp" %>
+<%session.setAttribute("sessionUser", null);%>
+	<%@include file="/news.jsp" %>
 </body>
 </html>

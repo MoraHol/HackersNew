@@ -47,7 +47,8 @@
 							<td style="text-align: right; padding-right: 4px;"><span
 								class="pagetop"><a id='me'
 									href="user?id=<%=sessionUser.getUser().getUserName()%>"> <%=sessionUser.getUser().getUserName()%></a>(<%=sessionUser.getUser().getKarma()%>)
-									| <a id='logout' href="/HackersNew">logout</a> </span></td>
+									| <a id='logout' href="/HackersNew">logout</a>
+									</form></span></td>
 						</tr>
 					</table></td>
 			</tr>

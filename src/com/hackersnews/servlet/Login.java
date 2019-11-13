@@ -29,7 +29,6 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
